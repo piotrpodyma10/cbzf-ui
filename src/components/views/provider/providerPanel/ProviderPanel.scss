@@ -1,0 +1,18 @@
+.provider-panel {
+  .action-conent {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+
+    .filters {
+      padding: 0;
+    }
+
+    button {
+      color: var(--light-dark);
+      text-transform: none;
+      border: 1px solid var(--light-dark);
+      border-radius: 4px;
+    }
+  }
+}

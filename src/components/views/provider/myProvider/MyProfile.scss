@@ -1,0 +1,60 @@
+.my-profile {
+  padding: 20px;
+
+  .account-container {
+    display: flex;
+  }
+
+  .action-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .info {
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: 4px;
+    width: 420px;
+
+    svg {
+      margin-right: 5px;
+    }
+  }
+
+  .modals-actions {
+    display: flex;
+
+    .change-password-button {
+      margin-right: 20px;
+    }
+  }
+
+  .container {
+    display: flex;
+
+    .account {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .provider {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      flex-flow: column wrap;
+      height: 600px;
+    }
+
+    .custom-text-field {
+      margin: 10px;
+      width: 200px;
+      margin: 15px;
+    }
+  }
+}

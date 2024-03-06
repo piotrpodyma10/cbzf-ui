@@ -1,0 +1,27 @@
+.add-provider-modal {
+  height: 400px;
+
+  .container {
+    padding: 10px;
+    overflow: auto;
+
+    .title {
+      text-align: center;
+    }
+
+    .add-button {
+      margin: auto;
+      display: block;
+    }
+    .field {
+      margin: 20px;
+    }
+
+    .provider-select {
+      width: 222px;
+      margin: 20px;
+      margin-bottom: 0px;
+      margin-top: 25px;
+    }
+  }
+}

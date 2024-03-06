@@ -1,0 +1,30 @@
+.modal-conent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 320px;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  .title {
+    font-weight: 12px;
+    font-weight: bold;
+  }
+
+  button {
+    background-color: var(--light-dark);
+    color: var(--darker-light);
+    padding: 5px 12px;
+    border-radius: 30px;
+    transition: 0.5s;
+
+    &:hover {
+      color: var(--light-dark);
+      transition: 0.5s;
+      background-color: var(--darker-light);
+    }
+  }
+}

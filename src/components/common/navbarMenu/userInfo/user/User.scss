@@ -1,0 +1,19 @@
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-dark);
+  color: var(--darker-light);
+  border-radius: 30px;
+  padding: 4px 8px;
+  font-size: 12px;
+  margin-right: 3px;
+
+  .user-name-container {
+    line-height: 14px;
+    padding: 0 10px;
+    .user-name {
+      font-weight: bold;
+    }
+  }
+}

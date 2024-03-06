@@ -1,0 +1,13 @@
+.custom-switch.MuiSwitch-root {
+  .Mui-checked {
+    color: var(--light-dark);
+  }
+
+  .MuiSwitch-track {
+    background-color: var(--gray);
+  }
+
+  .Mui-checked + .MuiSwitch-track {
+    background-color: var(--light-dark);
+  }
+}

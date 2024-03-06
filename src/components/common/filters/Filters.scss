@@ -1,0 +1,28 @@
+.filters {
+  padding: 20px;
+  .filters-container {
+    .filter {
+      width: 140px;
+      margin: 15px 10px;
+      margin-bottom: 0;
+
+      fieldset {
+        border-color: var(--light-dark);
+      }
+
+      svg {
+        color: var(--light-dark);
+      }
+    }
+
+    .MuiOutlinedInput-root {
+      color: var(--light-dark);
+      font-size: 14px;
+    }
+
+    .MuiInputLabel-root {
+      color: var(--light-dark);
+      font-size: 14px;
+    }
+  }
+}

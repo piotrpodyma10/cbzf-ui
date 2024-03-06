@@ -1,0 +1,15 @@
+.report-manager {
+  .select {
+    width: 150px;
+
+    label.Mui-focused {
+      color: var(--light-dark);
+    }
+
+    .Mui-focused {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: var(--light-dark);
+      }
+    }
+  }
+}

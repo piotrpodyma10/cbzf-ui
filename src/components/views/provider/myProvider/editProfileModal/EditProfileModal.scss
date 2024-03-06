@@ -1,0 +1,34 @@
+.edit-profile-modal {
+  height: 500px;
+  width: 500px;
+
+  .container {
+    padding: 10px;
+    overflow: auto;
+
+    .sub-title {
+      padding: 10px 0;
+      padding-bottom: 20px;
+    }
+
+    .custom-text-field {
+      margin: 10px;
+      width: 200px;
+    }
+
+    .update {
+      margin: auto;
+      color: var(--darker-light);
+
+      &:hover {
+        color: var(--light-dark);
+      }
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+}

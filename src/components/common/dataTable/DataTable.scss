@@ -1,0 +1,38 @@
+.data-table {
+  animation: showUp 2s;
+
+  .table-container {
+    height: 660px;
+
+    td,
+    th,
+    th span,
+    th span .MuiSvgIcon-root,
+    .MuiSvgIcon-root {
+      color: var(--light-dark);
+    }
+
+    .header-cell {
+      font-weight: bold;
+      color: var(--light-dark);
+    }
+  }
+
+  .table-pagination {
+    color: var(--light-dark);
+    border-bottom: none;
+
+    svg {
+      color: var(--light-dark);
+    }
+  }
+}
+
+@keyframes showUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

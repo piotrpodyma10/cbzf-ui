@@ -1,0 +1,54 @@
+.provider-profile-modal {
+  height: 600px;
+  width: 500px;
+
+  .container {
+    padding: 10px;
+    overflow: auto;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+
+    .title {
+      margin-bottom: 20px;
+    }
+
+    .sub-title {
+      padding: 10px 0;
+      padding-bottom: 20px;
+    }
+
+    .field {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+
+      .custom-text-field {
+        width: 220px;
+      }
+    }
+
+    .provider-select {
+      width: 220px;
+      margin: 20px;
+      margin-bottom: 0px;
+      margin-top: 25px;
+    }
+
+    .update {
+      margin: auto;
+      color: var(--darker-light);
+
+      &:hover {
+        color: var(--light-dark);
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+  }
+}

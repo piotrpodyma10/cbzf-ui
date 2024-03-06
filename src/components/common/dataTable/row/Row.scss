@@ -1,0 +1,47 @@
+.table-row {
+  .table-cell {
+    font-weight: bold;
+
+    &.center {
+      padding-right: 40px;
+    }
+
+    @media (max-width: 900px) {
+      font-size: 12px;
+    }
+  }
+
+  .status {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid black;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .MuiTooltip-tooltip {
+    background-color: var(--light-dark);
+    font-size: 30px;
+  }
+
+  .positive-value {
+    color: var(--white);
+    border-color: var(--positive);
+    color: var(--positive);
+    background-color: var(--positive-transparent);
+  }
+
+  .negative-value {
+    color: var(--negative);
+    background-color: var(--negative-transparent);
+    border-color: var(--negative);
+  }
+
+  .status {
+    @media (max-width: 800px) {
+      padding: 0px;
+      border: none;
+      background-color: unset;
+    }
+  }
+}

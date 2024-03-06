@@ -1,0 +1,28 @@
+.product-panel {
+  .action-conent {
+    display: flex;
+    justify-content: space-between;
+
+    .filters {
+      padding: 0;
+
+      .filter {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .details-page {
+    border-radius: 20px;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 16px;
+      }
+    }
+  }
+}

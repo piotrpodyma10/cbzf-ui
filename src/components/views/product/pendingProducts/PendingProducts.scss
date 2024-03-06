@@ -1,0 +1,25 @@
+.pending-products {
+  .action-conent {
+    display: flex;
+    justify-content: space-between;
+
+    .filters {
+      padding: 0;
+
+      .filter {
+        margin-right: 20px;
+      }
+    }
+
+    button {
+      color: var(--light-dark);
+      text-transform: none;
+      border: 1px solid var(--light-dark);
+      border-radius: 4px;
+    }
+  }
+
+  .action-button {
+    margin: 0 10px;
+  }
+}

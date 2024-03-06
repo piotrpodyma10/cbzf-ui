@@ -1,0 +1,29 @@
+.rate-modal {
+  height: 500px;
+  width: 500px !important;
+
+  .container {
+    padding: 10px;
+    height: 100%;
+    overflow: auto;
+
+    .main-title {
+      font-size: 18px;
+      font-weight: bold;
+      padding-bottom: 20px;
+    }
+
+    .parameter-container {
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+      margin: 10px;
+    }
+
+    .save {
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

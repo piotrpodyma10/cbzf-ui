@@ -1,0 +1,13 @@
+body {
+  .custom-select {
+    label.Mui-focused {
+      color: var(--darker);
+    }
+
+    .Mui-focused {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: var(--darker);
+      }
+    }
+  }
+}

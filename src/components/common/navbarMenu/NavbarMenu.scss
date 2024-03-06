@@ -1,0 +1,14 @@
+.action-container {
+  display: flex;
+  justify-content: space-between;
+
+  .toggle-icon {
+    color: var(--light-dark);
+  }
+
+  .configuration-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

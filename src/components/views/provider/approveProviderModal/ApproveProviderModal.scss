@@ -1,0 +1,45 @@
+.approve-provider-modal {
+  height: 500px;
+  width: 500px !important;
+
+  .container {
+    padding: 10px;
+    overflow: auto;
+    height: 100%;
+
+    .title {
+      margin-bottom: 20px;
+    }
+
+    .sub-title {
+      padding: 10px 0;
+      padding-bottom: 20px;
+    }
+
+    .custom-text-field {
+      margin: 10px;
+      width: 200px;
+    }
+
+    .field {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .update {
+      margin: auto;
+      color: var(--darker-light);
+
+      &:hover {
+        color: var(--light-dark);
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+  }
+}
