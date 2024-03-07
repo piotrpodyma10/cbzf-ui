@@ -5,7 +5,8 @@ import { isNotEmpty } from '../../../utils/userUtils'
 export const getProducts = (providerId = '', filters = {}) => {
   const { idKraj = '', pi = '', name = '', kodEAN = '' } = filters
   return axios.get(
-    `${config.endpoints.product}?idDostawca=${providerId}?idKraj=${idKraj}?pi=${pi}?name=${name}?kodEAN=${kodEAN}`
+    `${config.endpoints.product}`
+    // `${config.endpoints.product}?idDostawca=${providerId}?idKraj=${idKraj}?pi=${pi}?name=${name}?kodEAN=${kodEAN}`
   )
 }
 

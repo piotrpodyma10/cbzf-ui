@@ -35,7 +35,7 @@ function NavbarMenu({ handleDrawerToggle, drawerWidth }) {
         </div>
         <div className='configuration-container'>
           {user.email ? <UserInfo user={user} /> : <SignInUser />}
-          <SwitchTheme />
+          {/* <SwitchTheme /> */}
         </div>
       </Toolbar>
     </AppBar>

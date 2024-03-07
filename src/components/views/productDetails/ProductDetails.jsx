@@ -30,10 +30,13 @@ export const ProductDetails = () => {
   }
 
   return (
-    <Card className='product-details'>
-      <div className='title'>Szczegóły Produktu</div>
-      <div className='container'></div>
-      <DataTable data={tableData} />
-    </Card>
+    <div className='produt-details-page'>
+      <Card className='product-details'>
+        <div className='title'>Szczegóły Produktu</div>
+        <div className='container'></div>
+        <DataTable data={tableData} />
+      </Card>
+      <Card>TEST</Card>
+    </div>
   )
 }

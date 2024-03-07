@@ -20,7 +20,7 @@ html body {
   --negative: rgba(255, 0, 0, 1);
   --negative-transparent: rgba(255, 0, 0, 0.1);
 }
-
+/* 
 [data-theme='dark'] {
   --sea-green: #6adcbc;
   --white: #ffffff;
@@ -35,7 +35,7 @@ html body {
   --positive-transparent: rgba(125, 255, 0, 0.1);
   --negative: rgba(255, 0, 0, 1);
   --negative-transparent: rgba(255, 0, 0, 0.1);
-}
+} */
 
 ::-webkit-scrollbar {
   width: 5px;
