@@ -10,12 +10,12 @@ import { isNotEmpty } from '../../../../../utils/userUtils'
 
 export const PanelMenu = ({ fetchProducts }) => {
   const [filters, setFilters] = useState({})
-  const isDisabled = isNotEmpty(filters)
+  // const isDisabled = isNotEmpty(filters)
 
   const search = () => {
-    if (isNotEmpty(filters)) {
+    // if (isNotEmpty(filters)) {
       fetchProducts(filters)
-    }
+    // }
   }
 
   return (
@@ -33,7 +33,7 @@ export const PanelMenu = ({ fetchProducts }) => {
             />
           )
         })}
-        <CustomButton disabled={!isDisabled} className='search' onCLick={search} text='Szukaj' />
+        <CustomButton disabled={false} className='search' onCLick={search} text='Szukaj' />
       </CustomAccordion>
     </Card>
   )

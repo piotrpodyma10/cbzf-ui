@@ -15,5 +15,6 @@ export const config = {
     delete_user: `${apiUrl}/cbzf/delete_user`,
     rate: `${apiUrl}/cbzf/ocena`,
     notApproved: `${apiUrl}/cbzf/get_unverified_suppliers`,
+    getNutrition: `${apiUrl}/cbzf/get_nutrition`,
   },
 }

@@ -113,6 +113,23 @@ export const productSquadFields = [
   { field: 'procentRwsPorcja', type: 'number', label: 'Procent RWS Porcja' },
 ]
 
+export const productNutritionFields = [
+  { field: 'liczbaKat', type: 'number', label: 'Liczba Kategorii' },
+  { field: 'kategoria', type: 'string', label: 'Kategoria' },
+  { field: 'kat1', type: 'string', label: 'Kategoria 1' },
+  { field: 'kat2', type: 'string', label: 'Kategoria 2' },
+  { field: 'kat3', type: 'string', label: 'Kategoria 3' },
+  { field: 'kat4', type: 'string', label: 'Kategoria 4' },
+]
+
+export const productLabelFields = [
+  { field: 'przechowywanie', type: 'string', label: 'Przechowywanie' },
+  { field: 'trwalosc', type: 'string', label: 'Trwalosc' },
+  { field: 'po_otwarciu', type: 'string', label: 'Po Otwarciu' },
+  { field: 'przygotowanie', type: 'string', label: 'Przygotowanie' },
+  { field: 'alergeny', type: 'string', label: 'Alergeny' },
+]
+
 export const rateProductFields = [
   {
     idParametr: 1,
@@ -190,7 +207,8 @@ export const rateProductFields = [
 
 export const searchFilters = [
   { field: 'idKraj', type: 'number', label: 'Kraj' },
-  { field: 'pi', type: 'string', label: 'Dostawca' },
+  { field: 'idDostawca', type: 'number', label: 'Dostawca' },
   { field: 'name', type: 'string', label: 'Nazwa Produktu' },
-  { field: 'kodEAN', type: 'string', label: 'Etykieta Cyfrowa Produktu' },
+  // { field: 'kodEAN', type: 'string', label: 'Etykieta Cyfrowa Produktu' },
+  { field: 'indeksFFOOD', type: 'string', label: 'Indeks F-FOOD' },
 ]

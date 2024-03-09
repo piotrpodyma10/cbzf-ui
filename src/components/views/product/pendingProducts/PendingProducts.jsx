@@ -110,7 +110,7 @@ export const PendingProducts = () => {
       <div className='action-conent'>
         <div className='filters'></div>
         <div className='actions'>
-          {isApprovedProvider && (
+          {isApprovedProvider || isAdmin  && (
             <Button onClick={handleOpen}>
               <AddIcon />
               Dodaj

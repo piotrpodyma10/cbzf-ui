@@ -92,12 +92,6 @@ export const ProductPanel = ({ isConsumer }) => {
     <div className='product-panel'>
       {isConsumer && <PanelMenu fetchProducts={fetchProducts} />}
       <div className='action-conent'>
-        <div className='filters'>
-          <CustomTextField className='filter' label={'Dostawca'} size='small' />
-          <CustomTextField className='filter' label={'Indeks F-FOOD'} size='small' />
-          <CustomTextField className='filter' label={'Indeks M'} size='small' />
-        </div>
-        <div></div>
       </div>
       <DataTable data={tableData} />
       <AddProductModal handleClose={() => setOpen(false)} open={open} />

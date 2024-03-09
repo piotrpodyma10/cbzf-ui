@@ -16,7 +16,7 @@ import Row from './row/Row'
 import Filters from '../filters/Filters'
 import './DataTable.scss'
 
-export default function DataTable({ data }) {
+export default function DataTable({ data, noPagination }) {
   const { rows, columns } = data
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [orderBy, setOrderBy] = useState('status')
@@ -57,6 +57,12 @@ export default function DataTable({ data }) {
             <TableRow>
               <>
                 {columns.map((column, index) => {
+                  let displayLabel = column.label
+                  if (displayLabel.includes('\n')) {
+                    const splitValue = displayLabel.split('\n')
+                    displayLabel = <div><div>{splitValue[0]}</div> <div>{splitValue[1]}</div> </div>
+                  }
+
                   return (
                     <TableCell
                       className='header-cell'
@@ -70,7 +76,7 @@ export default function DataTable({ data }) {
                         direction={orderBy === column.id ? order : 'asc'}
                         onClick={createSortHandler(column.id)}
                       >
-                        {column.label}
+                        {displayLabel}
                         {orderBy === column.id ? (
                           <Box sx={visuallyHidden}>{order === 'desc' ? 'sorted descending' : 'sorted ascending'}</Box>
                         ) : null}
@@ -84,6 +90,7 @@ export default function DataTable({ data }) {
           <TableBody>{sortSliceData(rows)}</TableBody>
         </Table>
       </TableContainer>
+      {!noPagination && (
       <TableFooter>
         <TableRow>
           <TablePagination
@@ -99,6 +106,7 @@ export default function DataTable({ data }) {
           />
         </TableRow>
       </TableFooter>
+      )}
     </div>
   )
 }

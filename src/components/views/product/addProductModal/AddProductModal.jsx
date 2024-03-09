@@ -7,7 +7,7 @@ import CustomTextField from '../../../common/customTextField/CustomTextField'
 import './AddProductModal.scss'
 import { toast } from 'react-toastify'
 import { CustomAccordion } from '../../../common/customAccordion/CustomAccordion'
-import { praductIndexFields, productCategoryFields, productSquadFields } from '../../../../utils/dataUtils'
+import { praductIndexFields, productCategoryFields, productLabelFields, productSquadFields } from '../../../../utils/dataUtils'
 
 export const AddProductModal = ({ handleClose, open }) => {
   const [fields, setFields] = useState({})
@@ -81,6 +81,24 @@ export const AddProductModal = ({ handleClose, open }) => {
           </CustomAccordion>
           <CustomAccordion title={'Skład'}>
             {productSquadFields.map((f, key) => {
+              return (
+                <div key={key} className='field'>
+                  <CustomTextField onChange={(e) => handleFields(e, f)} type={f.type} label={f.label} />
+                </div>
+              )
+            })}
+          </CustomAccordion>
+          <CustomAccordion title={'Wartości odżywcze'}>
+            {productSquadFields.map((f, key) => {
+              return (
+                <div key={key} className='field'>
+                  <CustomTextField onChange={(e) => handleFields(e, f)} type={f.type} label={f.label} />
+                </div>
+              )
+            })}
+          </CustomAccordion>
+          <CustomAccordion title={'Etykiety'}>
+            {productLabelFields.map((f, key) => {
               return (
                 <div key={key} className='field'>
                   <CustomTextField onChange={(e) => handleFields(e, f)} type={f.type} label={f.label} />

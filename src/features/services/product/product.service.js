@@ -3,10 +3,16 @@ import { config } from '../../../utils/config'
 import { isNotEmpty } from '../../../utils/userUtils'
 
 export const getProducts = (providerId = '', filters = {}) => {
-  const { idKraj = '', pi = '', name = '', kodEAN = '' } = filters
+  const { idKraj = '', idDostawca = '', name = '', kodEAN = '', productId = '' } = filters
   return axios.get(
-    `${config.endpoints.product}`
-    // `${config.endpoints.product}?idDostawca=${providerId}?idKraj=${idKraj}?pi=${pi}?name=${name}?kodEAN=${kodEAN}`
+    `${config.endpoints.product}`, {
+      params: {
+        idDostawca: providerId || idDostawca, 
+        idProdukt: productId, 
+        idKraj: idKraj, 
+        nazwaProdukt: name 
+      }
+    }
   )
 }
 
@@ -28,4 +34,8 @@ export const approveProduct = (provider) => {
 
 export const getProductsReadyToReview = () => {
   return axios.get(config.endpoints.readytoReview)
+}
+
+export const getProductNutrition = (productId) => {
+  return axios.get(`${config.endpoints.getNutrition}?idProdukt=${productId}`)
 }
