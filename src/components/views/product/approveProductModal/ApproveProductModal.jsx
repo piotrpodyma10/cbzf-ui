@@ -1,18 +1,19 @@
 import React from 'react'
 import CustomModal from '../../../common/modal/CustomModal'
 import { CustomButton } from '../../../common/customButton/CustomButton'
-import './ApproveProductModal.scss'
 import { toast } from 'react-toastify'
-import { approveProduct } from '../../../../features/services/product/product.service'
+import { addProduct } from '../../../../features/services/product/product.service'
+import './ApproveProductModal.scss'
 
-export const ApproveProductModal = ({ open, handleClose, product }) => {
+export const ApproveProductModal = ({ open, handleClose, product, fetchPendingProducts }) => {
   const { nazwaProdukt, kodEan } = product
 
   const approve = () => {
-    approveProduct()
+    addProduct([product])
       .then((response) => {
-        if (response.status) {
+        if (response.status === 200) {
           toast.success('Produkt został zatwierdzony')
+          fetchPendingProducts()
           handleClose()
         }
       })

@@ -1,31 +1,41 @@
 .produt-details-page {
-    .title {
+  .title {
+    padding: 20px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 20px;
+
+    .product-indexes {
       padding: 20px;
-      font-size: 16px;
-      font-weight: bold;
     }
+  }
 
-    .details-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 20px;
+  .index-container {
+    display: flex;
+    padding: 20px 40px;
+  }
+  .index-title {
+    width: 150px;
+    display: inline-block;
+  }
 
-      .product-indexes {
-        padding: 20px;
-      }
-
-    }
-
-  
+  img {
+    margin-left: 40px;
+  }
 
   .product-details {
     // width: 600px;
 
     .details-table {
-    // width: 600px;
+      // width: 600px;
       overflow-x: auto;
       width: 100%;
     }
@@ -36,30 +46,29 @@
     width: 560px;
 
     .nutritions-table {
-    width: 560px;
+      width: 560px;
       // white-space: nowrap; /* Prevent text wrapping */
       overflow-x: auto;
 
-      td, th {
-      white-space: nowrap; /* Prevent text wrapping */
-      font-size: 12px;
-      // text-align: left;
-
+      td,
+      th {
+        white-space: nowrap; /* Prevent text wrapping */
+        font-size: 12px;
+        // text-align: left;
       }
       td:first-child {
-      text-align: left;
-      padding-left: 25px;
-    }
+        text-align: left;
+        padding-left: 25px;
+      }
 
-    th:first-child {
-      text-align: left;
-      padding-left: 25px;
-  }
-      
+      th:first-child {
+        text-align: left;
+        padding-left: 25px;
+      }
+
       .table-row .table-cell {
         font-weight: normal;
       }
     }
   }
-
 }

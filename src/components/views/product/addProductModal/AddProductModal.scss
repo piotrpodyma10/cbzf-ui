@@ -1,6 +1,6 @@
 .add-product-modal {
-  height: 600px;
-  width: 500px !important;
+  height: 650px;
+  width: 600px !important;
 
   .container {
     padding: 10px;
@@ -11,15 +11,30 @@
 
     .title {
       text-align: center;
-      margin-bottom: 20px;
     }
 
     .add-button {
       display: block;
       margin: 20px auto;
+      width: 100px;
     }
     .field {
+      margin-bottom: 20px;
+    }
+
+    .nutrition-field {
       margin: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .nutrition-unit {
+        margin: 10px;
+      }
+
+      .rws {
+        width: 150px;
+      }
     }
   }
 }

@@ -16,7 +16,6 @@ export const handleFields = (e, f, setFields, fields) => {
   }
 
   if (f.id) {
-    console.log('DANE', f, fields)
     if (f.max) {
       if (value <= f.max) {
         setFields({ ...fields, [f.id]: value })

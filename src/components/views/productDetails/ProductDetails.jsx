@@ -1,33 +1,74 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../../common/card/Card'
 import DataTable from '../../common/dataTable/DataTable'
-import { getProductNutrition, getProducts } from '../../../features/services/product/product.service'
+import {
+  getProductIndexes,
+  getProductIngredients,
+  getProductLabels,
+  getProductNutrition,
+  getProducts,
+} from '../../../features/services/product/product.service'
 import { useParams } from 'react-router-dom'
 import { getIndex } from '../../../utils/productUtils'
 import './ProductDetails.scss'
 
 export const ProductDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams()
   const [product, setProduct] = useState([])
   const [nutrition, setNutrition] = useState([])
+  const [ingredients, setIngredients] = useState([])
+  const [labels, setLabels] = useState([])
+  const [indexes, setIndexes] = useState([])
+
+  const {
+    indeksE = '',
+    indeksV,
+    indeksM,
+    indeksO,
+    indeksF,
+    indeksP,
+    indeksS,
+    indeksT,
+  } = indexes && indexes.length > 0 && indexes?.[0]
 
   useEffect(() => {
-    getProducts('', { productId: id}).then((response) => {
+    getProducts('', { productId: id }).then((response) => {
       const data = response.data
       if (data) {
         setProduct(data)
       }
     })
-    getProductNutrition(1).then(response => {
+    getProductNutrition(1).then((response) => {
       const data = response.data
       if (data) {
         setNutrition(data)
       }
     })
 
+    getProductIndexes(2).then((response) => {
+      const data = response.data
+      if (data) {
+        setIndexes(data)
+      }
+    })
+    getProductIngredients(3).then((response) => {
+      const data = response.data
+      if (data) {
+        setIngredients(data)
+      }
+    })
+    getProductLabels(3).then((response) => {
+      const data = response.data
+      if (data) {
+        setLabels(data)
+      }
+    })
   }, [])
 
   console.log('nutrition', nutrition)
+  console.log('ingredients', ingredients)
+  console.log('labels', labels)
+  console.log('indexes', indexes)
 
   const tableData = {
     rows: product,
@@ -67,34 +108,64 @@ export const ProductDetails = () => {
 
   return (
     <div className='produt-details-page'>
-      <div className="details-container">
-        <div className="details-cards-container">
+      <div className='details-container'>
+        <div className='details-cards-container'>
           <Card className='product-details'>
             <div className='title'>Szczegóły Produktu</div>
             <div className='details-table'>
               <DataTable data={tableData} noPagination={true} />
-
             </div>
           </Card>
           <Card className='product-indexes'>
-          {getIndex()}
-        </Card>
-        <Card className='product-labels'>
-          Labels
-        </Card>
-        </div>
-          <Card className='nutritions-card'>
-            <div className='title'>Wartości odżywcze</div>
-            <div className='nutritions-table'>
-              <DataTable data={productNutritions} noPagination={true} />
+            <div className='title'>Indeksy</div>
+            <div className='index-container'>
+              <div>
+                <div className='index'>
+                  <span className='index-title'>Indeks E:</span>
+                  {indeksE}
+                </div>
+                <div className='index'>
+                  <span className='index-title'>Indeks V:</span>
+                  {indeksV}
+                </div>
+                <div className='index'>
+                  <span className='index-title'>Indeks M:</span>
+                  {indeksM}
+                </div>
+                <div className='index'>
+                  <span className='index-title'>Indeks O:</span>
+                  {indeksO}
+                </div>
+                <div className='index'>
+                  <span className='index-title'>Indeks P:</span>
+                  {indeksP}
+                </div>
+                <div className='index'>
+                  <span className='index-title'>Indeks F:</span>
+                  {indeksF}
+                </div>
+                <div className='index'>
+                  <span className='index-title'>Indeks S:</span>
+                  {indeksS}
+                </div>
+                <div className='index'>
+                  <span className='index-title'>Indeks T:</span>
+                  {indeksT}
+                </div>
+              </div>
+              {getIndex(indeksT)}
             </div>
           </Card>
-
+          <Card className='product-labels'>Labels</Card>
+        </div>
+        <Card className='nutritions-card'>
+          <div className='title'>Wartości odżywcze</div>
+          <div className='nutritions-table'>
+            <DataTable data={productNutritions} noPagination={true} />
+          </div>
+        </Card>
       </div>
-      <div className="details-container">
-        
-        
-      </div>
+      <div className='details-container'></div>
     </div>
   )
 }

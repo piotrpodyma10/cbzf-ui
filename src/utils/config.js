@@ -16,5 +16,10 @@ export const config = {
     rate: `${apiUrl}/cbzf/ocena`,
     notApproved: `${apiUrl}/cbzf/get_unverified_suppliers`,
     getNutrition: `${apiUrl}/cbzf/get_nutrition`,
+    getLabel: `${apiUrl}/cbzf/get_label`,
+    getIndexes: `${apiUrl}/cbzf/get_indices`,
+    getIngredients: `${apiUrl}/cbzf/get_ingredients`,
+    addPendingNutrition: `${apiUrl}/cbzf/store_temporary_nutrition`,
+    addNutrition: `${apiUrl}/cbzf/store_temporary_nutrition`,
   },
 }

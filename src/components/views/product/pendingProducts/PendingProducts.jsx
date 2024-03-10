@@ -17,7 +17,7 @@ import './PendingProducts.scss'
 export const PendingProducts = () => {
   const { isExpert, isSuperExpert, isAdmin, user, isProvider } = useSelector(auth)
   const { supplier } = user
-  const { isApproved } = supplier
+  const { isApproved, id } = supplier
   const [products, setProducts] = useState([])
   const [product, setProduct] = useState({})
   const [open, setOpen] = useState(false)
@@ -51,8 +51,9 @@ export const PendingProducts = () => {
   const editAccess = isExpert || isAdmin
   const approveAccess = isSuperExpert || isAdmin
 
-  useEffect(() => {
-    getPendingProducts().then((products) => {
+  const fetchPendingProducts = () => {
+    const providerId = isProvider ? id : ''
+    getPendingProducts(providerId).then((products) => {
       let data = products.data
       if (data) {
         if (editAccess || approveAccess) {
@@ -82,6 +83,10 @@ export const PendingProducts = () => {
         setProducts(data)
       }
     })
+  }
+
+  useEffect(() => {
+    fetchPendingProducts()
   }, [])
 
   // OLD
@@ -110,7 +115,7 @@ export const PendingProducts = () => {
       <div className='action-conent'>
         <div className='filters'></div>
         <div className='actions'>
-          {isApprovedProvider || isAdmin  && (
+          {(isApprovedProvider || isAdmin) && (
             <Button onClick={handleOpen}>
               <AddIcon />
               Dodaj
@@ -120,8 +125,18 @@ export const PendingProducts = () => {
       </div>
       <DataTable data={tableData} />
       <AddProductModal handleClose={handleClose} open={open} />
-      {editAccess && <EditProductModal handleClose={handleCloseEdit} product={product} open={openEdit} />}
-      {approveAccess && <ApproveProductModal handleClose={handleCloseApprove} product={product} open={openApprove} />}
+      {/* {editAccess && <EditProductModal handleClose={handleCloseEdit} product={product} open={openEdit} />} */}
+      {editAccess && (
+        <AddProductModal handleClose={handleCloseEdit} product={product} open={openEdit} editMode={true} />
+      )}
+      {approveAccess && (
+        <ApproveProductModal
+          handleClose={handleCloseApprove}
+          product={product}
+          open={openApprove}
+          fetchPendingProducts={fetchPendingProducts}
+        />
+      )}
     </div>
   )
 }
