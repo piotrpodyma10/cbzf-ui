@@ -35,7 +35,7 @@ export const ProviderProfileModal = ({ open, handleClose, userId, fetchPendingPr
   const isDisabled = areRequiredFieldsSet(fields, newProviderColumns)
 
   return (
-    <CustomModal open={open} handleClose={handleClose} className='provider-profile-modal'>
+    <CustomModal open={open} handleClose={close} className='provider-profile-modal'>
       <div className='container'>
         <div className='title'>Uzupełnij profil dostawcy</div>
         <div className='details'>

@@ -3,13 +3,14 @@ import { config } from '../../../utils/config'
 import { isNotEmpty } from '../../../utils/userUtils'
 
 export const getProducts = (providerId = '', filters = {}) => {
-  const { idKraj = '', idDostawca = '', name = '', kodEAN = '', productId = '' } = filters
+  const { idKraj = '', idDostawca = '', name = '', indeksT = '', productId = '' } = filters
   return axios.get(`${config.endpoints.product}`, {
     params: {
       idDostawca: providerId || idDostawca,
       idProdukt: productId,
       idKraj: idKraj,
       nazwaProdukt: name,
+      indeksT: indeksT,
     },
   })
 }
@@ -18,8 +19,8 @@ export const addProduct = (product) => {
   return axios.put(config.endpoints.product, product)
 }
 
-export const getPendingProducts = (providerId = '') => {
-  return axios.get(`${config.endpoints.temporaryProduct}?idDostawca=${providerId}`)
+export const getPendingProducts = (providerId = '', isApproved = '') => {
+  return axios.get(`${config.endpoints.temporaryProduct}?idDostawca=${providerId}&isApproved=${isApproved}`)
 }
 
 export const addPendingProduct = (product) => {
@@ -36,6 +37,10 @@ export const getProductsReadyToReview = () => {
 
 export const getProductNutrition = (productId) => {
   return axios.get(`${config.endpoints.getNutrition}?idProdukt=${productId}`)
+}
+
+export const getPendingProductNutrition = (productId) => {
+  return axios.get(`${config.endpoints.getPendingNutrition}?idProdukt=${productId}`)
 }
 
 export const getProductIngredients = (productId) => {

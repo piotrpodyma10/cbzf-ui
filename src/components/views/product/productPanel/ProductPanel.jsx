@@ -6,10 +6,10 @@ import { AddProductModal } from '../addProductModal/AddProductModal'
 import { CustomButton } from '../../../common/customButton/CustomButton'
 import { useNavigate, useLocation } from 'react-router-dom'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import './ProductPanel.scss'
 import { PanelMenu } from './panelMenu/PanelMenu'
 import { useSelector } from 'react-redux'
 import { auth } from '../../../../features/redux/auth/authSlice'
+import './ProductPanel.scss'
 
 export const ProductPanel = ({ isConsumer }) => {
   const { isProvider, user } = useSelector(auth)
@@ -91,8 +91,7 @@ export const ProductPanel = ({ isConsumer }) => {
   return (
     <div className='product-panel'>
       {isConsumer && <PanelMenu fetchProducts={fetchProducts} />}
-      <div className='action-conent'>
-      </div>
+      <div className='action-conent'></div>
       <DataTable data={tableData} />
       <AddProductModal handleClose={() => setOpen(false)} open={open} />
     </div>

@@ -65,11 +65,6 @@ export const ProductDetails = () => {
     })
   }, [])
 
-  console.log('nutrition', nutrition)
-  console.log('ingredients', ingredients)
-  console.log('labels', labels)
-  console.log('indexes', indexes)
-
   const tableData = {
     rows: product,
     columns: [
@@ -116,7 +111,7 @@ export const ProductDetails = () => {
               <DataTable data={tableData} noPagination={true} />
             </div>
           </Card>
-          <Card className='product-indexes'>
+          {/* <Card className='product-indexes'>
             <div className='title'>Indeksy</div>
             <div className='index-container'>
               <div>
@@ -156,7 +151,7 @@ export const ProductDetails = () => {
               {getIndex(indeksT)}
             </div>
           </Card>
-          <Card className='product-labels'>Labels</Card>
+          <Card className='product-labels'>Labels</Card> */}
         </div>
         <Card className='nutritions-card'>
           <div className='title'>Wartości odżywcze</div>

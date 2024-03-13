@@ -53,7 +53,8 @@ export const PendingProducts = () => {
 
   const fetchPendingProducts = () => {
     const providerId = isProvider ? id : ''
-    getPendingProducts(providerId).then((products) => {
+    const isApproved = isProvider ? '' : isExpert ? false : isSuperExpert ? true : ''
+    getPendingProducts(providerId, isApproved).then((products) => {
       let data = products.data
       if (data) {
         if (editAccess || approveAccess) {
@@ -124,10 +125,16 @@ export const PendingProducts = () => {
         </div>
       </div>
       <DataTable data={tableData} />
-      <AddProductModal handleClose={handleClose} open={open} />
+      <AddProductModal handleClose={handleClose} open={open} fetchPendingProducts={fetchPendingProducts} />
       {/* {editAccess && <EditProductModal handleClose={handleCloseEdit} product={product} open={openEdit} />} */}
       {editAccess && (
-        <AddProductModal handleClose={handleCloseEdit} product={product} open={openEdit} editMode={true} />
+        <AddProductModal
+          handleClose={handleCloseEdit}
+          product={product}
+          open={openEdit}
+          editMode={true}
+          fetchPendingProducts={fetchPendingProducts}
+        />
       )}
       {approveAccess && (
         <ApproveProductModal

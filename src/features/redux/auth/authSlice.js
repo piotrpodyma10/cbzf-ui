@@ -45,7 +45,6 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }) 
   try {
     const user = await authService.login(email, password)
 
-    console.log('user', user)
     if (isNotEmpty(user)) {
       return {
         user: user,

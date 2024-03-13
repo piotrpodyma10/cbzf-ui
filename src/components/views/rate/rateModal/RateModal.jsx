@@ -4,8 +4,8 @@ import { Button } from '@mui/material'
 import { CustomSwitch } from '../../../common/customSwitch/CustomSwitch'
 import { toast } from 'react-toastify'
 import { rateProductFields } from '../../../../utils/dataUtils'
-import './RateModal.scss'
 import { rateProduct } from '../../../../features/services/rate/rate.service'
+import './RateModal.scss'
 
 export const RateModal = ({ open, handleClose, product = {}, fetchProducts }) => {
   const [fields, setFields] = useState(rateProductFields)
@@ -60,13 +60,12 @@ export const RateModal = ({ open, handleClose, product = {}, fetchProducts }) =>
     },
   ]
   const alergens = [{ text: 'Gluten', id: 12 }]
-  console.log('product', fields)
 
   useEffect(() => {
     if (fields.length > 0) {
       setFields(fields.map((field) => ({ ...field, idProdukt: product.idProdukt })))
     }
-  }, [])
+  }, [product])
 
   const handleUpdate = (id, newValue) => {
     const updatedItems = fields.map((field) => {

@@ -67,7 +67,6 @@ export const basicProductFields = [
 ]
 
 export const praductIndexFields = [
-  { field: 'indeks', type: 'number', label: 'Indeks' },
   { field: 'indeksE', type: 'number', label: 'Indeks E' },
   { field: 'indeksV', type: 'number', label: 'Indeks V' },
   { field: 'indeksM', type: 'number', label: 'Indeks M' },
@@ -75,7 +74,7 @@ export const praductIndexFields = [
   { field: 'indeksF', type: 'number', label: 'Indeks F' },
   { field: 'indeksP', type: 'number', label: 'Indeks P' },
   { field: 'indeksS', type: 'number', label: 'Indeks S' },
-  { field: 'indeksT', type: 'number', label: 'Indeks T' },
+  // { field: 'indeksT', type: 'number', label: 'Indeks T' },
 ]
 
 export const productCategoryFields = [
@@ -89,6 +88,15 @@ export const productCategoryFields = [
 
 export const productSquadFields = [
   { field: 'skladnikIlosc', type: 'number', label: 'Składnik Ilość', required: true },
+  { field: 'skladnik1', type: 'string', label: 'Składnik 1' },
+  { field: 'skladnik2', type: 'string', label: 'Składnik 2' },
+  { field: 'skladnik3', type: 'string', label: 'Składnik 3' },
+  { field: 'skladnik4', type: 'string', label: 'Składnik 4' },
+  { field: 'skladnik5', type: 'string', label: 'Składnik 5' },
+  { field: 'skladnik6', type: 'string', label: 'Składnik 6' },
+  { field: 'skladnik7', type: 'string', label: 'Składnik 7' },
+  { field: 'skladnik8', type: 'string', label: 'Składnik 8' },
+  { field: 'skladnik9', type: 'string', label: 'Składnik 9' },
   { field: 'dodatekIlosc', type: 'number', label: 'Dodatek Ilość' },
   { field: 'idDodatek1', type: 'number', label: 'Dodatek 1' },
   { field: 'idDodatek2', type: 'number', label: 'Dodatek 2' },
@@ -194,7 +202,7 @@ export const productNutritionCategories = [
 export const productLabelFields = [
   { field: 'przechowywanie', type: 'string', label: 'Przechowywanie' },
   { field: 'trwalosc', type: 'string', label: 'Trwalosc' },
-  { field: 'po_otwarciu', type: 'string', label: 'Po Otwarciu' },
+  { field: 'poOtwarciu', type: 'string', label: 'Po Otwarciu' },
   { field: 'przygotowanie', type: 'string', label: 'Przygotowanie' },
   { field: 'alergeny', type: 'string', label: 'Alergeny' },
 ]
@@ -279,5 +287,5 @@ export const searchFilters = [
   { field: 'idDostawca', type: 'number', label: 'Dostawca' },
   { field: 'name', type: 'string', label: 'Nazwa Produktu' },
   // { field: 'kodEAN', type: 'string', label: 'Etykieta Cyfrowa Produktu' },
-  { field: 'indeksFFOOD', type: 'string', label: 'Indeks F-FOOD' },
+  { field: 'indeksT', type: 'string', label: 'Indeks F-FOOD' },
 ]

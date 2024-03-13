@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomModal from '../../../common/modal/CustomModal'
 import { CustomButton } from '../../../common/customButton/CustomButton'
 import CustomTextField from '../../../common/customTextField/CustomTextField'
@@ -7,6 +7,7 @@ import { CustomAccordion } from '../../../common/customAccordion/CustomAccordion
 import {
   praductIndexFields,
   productCategoryFields,
+  productLabelFields,
   productNutritionCarboFields,
   productNutritionFatFields,
   productNutritionGeneralFields,
@@ -15,13 +16,19 @@ import {
   productSquadFields,
 } from '../../../../utils/dataUtils'
 import { handleFields } from '../../../../utils/fieldsUtils'
-import './AddProductModal.scss'
-import { addPendingNutrition, addPendingProduct } from '../../../../features/services/product/product.service'
+import {
+  addPendingNutrition,
+  addPendingProduct,
+  getPendingProductNutrition,
+  getProductNutrition,
+} from '../../../../features/services/product/product.service'
 import { CustomSwitch } from '../../../common/customSwitch/CustomSwitch'
 import { useSelector } from 'react-redux'
 import { auth } from '../../../../features/redux/auth/authSlice'
+import './AddProductModal.scss'
+import { isNotEmpty } from '../../../../utils/userUtils'
 
-export const AddProductModal = ({ handleClose, open }) => {
+export const AddProductModal = ({ handleClose, open, product = {}, editMode = false, fetchPendingProducts }) => {
   const { user } = useSelector(auth)
   const { supplier = {} } = user
   const { id = '' } = supplier
@@ -48,6 +55,32 @@ export const AddProductModal = ({ handleClose, open }) => {
   const requiredFields = ['par1', 'par2', 'kodEan', 'nazwaProdukt', 'skladnikIlosc']
   const isDisabled = !requiredFields.every((field) => Object.keys(fields).includes(field))
 
+  useEffect(() => {
+    if (isNotEmpty(product)) {
+      setFields(product)
+
+      const { idProdukt } = product
+      getPendingProductNutrition(idProdukt).then((response) => {
+        const nutritions = response.data
+        if (nutritions.length > 0) {
+          const updatedNutritions =
+            nutritionfields &&
+            nutritionfields.length > 0 &&
+            nutritionfields.map((nutrition) => {
+              const findRecord = nutritions.filter(
+                (nutri) => nutri.nazwa === nutrition.nazwa && nutri.nazwaGrupy === nutrition.nazwaGrupy
+              )
+              const record = findRecord.length > 0 ? findRecord[0] : nutrition
+              return { ...record }
+            })
+          if (updatedNutritions.length > 0) {
+            setNutritionFields(updatedNutritions)
+          }
+        }
+      })
+    }
+  }, [product])
+
   const handleNutritionUpdate = (nazwaGrupy, nazwa, cell, newValue) => {
     const updatedItems = nutritionfields.map((field) => {
       if (field.nazwaGrupy === nazwaGrupy && field.nazwa === nazwa) {
@@ -61,11 +94,12 @@ export const AddProductModal = ({ handleClose, open }) => {
 
   const close = () => {
     setFields({})
+    setNutritionFields(allNutritions)
     handleClose()
   }
 
   const saveData = () => {
-    const allFields = [{ ...fields, idDostawca: id }]
+    const allFields = editMode ? [{ ...fields, approvedByExpert: true }] : [{ ...fields, idDostawca: id }]
     addPendingProduct(allFields)
       .then((response) => {
         const productId = response.data
@@ -76,11 +110,11 @@ export const AddProductModal = ({ handleClose, open }) => {
         }))
         addPendingNutrition(allPreparedNutritions)
           .then((nutrResponse) => {
-            console.log('Nutr', nutrResponse)
             if (nutrResponse.status === 200) {
-              toast.success('Produkt został dodany')
-              setNutritionFields({})
-              setFields({})
+              const toastText = editMode ? 'Produkt został zaktualizowany' : 'Produkt został dodany'
+              toast.success(toastText)
+              fetchPendingProducts()
+              close()
             }
           })
           .catch((e) => {
@@ -94,10 +128,18 @@ export const AddProductModal = ({ handleClose, open }) => {
       })
   }
 
+  const mineralsData = nutritionfields.filter((field) => field.nazwaGrupy === 'Minerały')
+  const vitaminsData = nutritionfields.filter((field) => field.nazwaGrupy === 'Witaminy')
+  const carbioData = nutritionfields.filter((field) => field.nazwaGrupy === 'Węglowodany')
+  const fatData = nutritionfields.filter((field) => field.nazwaGrupy === 'Tłuszcz')
+  const generalata = nutritionfields.filter(
+    (field) =>
+      field.nazwaGrupy === 'Wartość Energetyczna' || field.nazwaGrupy === 'Białko' || field.nazwaGrupy === 'Sól'
+  )
   return (
     <CustomModal className='add-product-modal' open={open} handleClose={close}>
       <div className='container'>
-        <div className='title'>Dodaj Produkt</div>
+        <div className='title'>{editMode ? 'Rozszerz' : 'Dodaj'} Produkt</div>
         <div className='fields-container'>
           <CustomAccordion title='Podstawowe informacje'>
             {allFields.map((f, key) => {
@@ -107,6 +149,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                     onChange={(e) => handleFields(e, f, setFields, fields)}
                     type={f.type}
                     label={f.label}
+                    value={fields?.[f.field]}
+                    InputLabelProps={editMode ? { shrink: true } : {}}
                     required={f.required}
                   />
                 </div>
@@ -121,6 +165,24 @@ export const AddProductModal = ({ handleClose, open }) => {
                     onChange={(e) => handleFields(e, f, setFields, fields)}
                     type={f.type}
                     label={f.label}
+                    value={fields?.[f.field]}
+                    InputLabelProps={editMode ? { shrink: true } : {}}
+                    required={f.required}
+                  />
+                </div>
+              )
+            })}
+          </CustomAccordion>
+          <CustomAccordion title={'Etykiety'}>
+            {productLabelFields.map((f, key) => {
+              return (
+                <div key={key} className='field'>
+                  <CustomTextField
+                    onChange={(e) => handleFields(e, f, setFields, fields)}
+                    type={f.type}
+                    label={f.label}
+                    value={fields?.[f.field]}
+                    InputLabelProps={editMode ? { shrink: true } : {}}
                     required={f.required}
                   />
                 </div>
@@ -135,6 +197,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                     onChange={(e) => handleFields(e, f, setFields, fields)}
                     type={f.type}
                     label={f.label}
+                    value={fields?.[f.field]}
+                    InputLabelProps={editMode ? { shrink: true } : {}}
                     required={f.required}
                   />
                 </div>
@@ -142,19 +206,23 @@ export const AddProductModal = ({ handleClose, open }) => {
             })}
             PAR 2*
             <CustomSwitch
+              value={fields.par2}
+              checked={fields.par2}
               required={true}
               onChange={(e, v) => handleFields({ target: { value: v } }, { field: 'par2' }, setFields, fields)}
             />
           </CustomAccordion>
           <CustomAccordion title={'Wartości odżywcze'}>
             <CustomAccordion title={'Ogólne wartości'}>
-              {productNutritionGeneralFields.map((f, key) => {
+              {generalata.map((f, key) => {
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
                       type={'number'}
                       size='small'
+                      value={f.zawartosc}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       label={f.nazwaGrupy}
                     />
                     <span className='nutrition-unit'>{f.jednostka}</span>
@@ -163,6 +231,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                       size='small'
                       className='rws'
                       type={'number'}
+                      value={f.procentRWS}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       label={'Procent RWS'}
                     />
                   </div>
@@ -170,13 +240,15 @@ export const AddProductModal = ({ handleClose, open }) => {
               })}
             </CustomAccordion>
             <CustomAccordion title={'Tłuszcz'}>
-              {productNutritionFatFields.map((f, key) => {
+              {fatData.map((f, key) => {
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
                       type={'number'}
                       size='small'
+                      value={f.zawartosc}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       label={f.nazwa}
                     />
                     <span className='nutrition-unit'>{f.jednostka}</span>
@@ -185,6 +257,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                       size='small'
                       className='rws'
                       type={'number'}
+                      value={f.procentRWS}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       label={'Procent RWS'}
                     />
                   </div>
@@ -192,13 +266,15 @@ export const AddProductModal = ({ handleClose, open }) => {
               })}
             </CustomAccordion>
             <CustomAccordion title={'Węglowodany'}>
-              {productNutritionCarboFields.map((f, key) => {
+              {carbioData.map((f, key) => {
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
                       type={'number'}
                       size='small'
+                      value={f.zawartosc}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       label={f.nazwa}
                     />
                     <span className='nutrition-unit'>{f.jednostka}</span>
@@ -206,6 +282,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRWS', e.target.value)}
                       size='small'
                       className='rws'
+                      value={f.procentRWS}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       type={'number'}
                       label={'Procent RWS'}
                     />
@@ -214,13 +292,15 @@ export const AddProductModal = ({ handleClose, open }) => {
               })}
             </CustomAccordion>
             <CustomAccordion title={'Witaminy'}>
-              {productNutritionVitaminFields.map((f, key) => {
+              {vitaminsData.map((f, key) => {
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
                       type={'number'}
                       size='small'
+                      value={f.zawartosc}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       label={f.nazwa}
                     />
                     <span className='nutrition-unit'>{f.jednostka}</span>
@@ -228,6 +308,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRWS', e.target.value)}
                       size='small'
                       className='rws'
+                      value={f.procentRWS}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       type={'number'}
                       label={'Procent RWS'}
                     />
@@ -236,12 +318,14 @@ export const AddProductModal = ({ handleClose, open }) => {
               })}
             </CustomAccordion>
             <CustomAccordion title={'Minerały'}>
-              {productNutritionMineralFields.map((f, key) => {
+              {mineralsData.map((f, key) => {
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
                       type={'number'}
+                      value={f.zawartosc}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
                       label={f.nazwa}
                     />
@@ -250,6 +334,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRWS', e.target.value)}
                       size='small'
                       className='rws'
+                      value={f.procentRWS}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
                       type={'number'}
                       label={'Procent RWS'}
                     />
@@ -265,6 +351,8 @@ export const AddProductModal = ({ handleClose, open }) => {
                   <CustomTextField
                     onChange={(e) => handleFields(e, f, setFields, fields)}
                     type={f.type}
+                    value={fields?.[f.field]}
+                    InputLabelProps={editMode ? { shrink: true } : {}}
                     label={f.label}
                   />
                 </div>
@@ -272,7 +360,12 @@ export const AddProductModal = ({ handleClose, open }) => {
             })}
           </CustomAccordion>
         </div>
-        <CustomButton disabled={isDisabled} text={'Dodaj'} onClick={saveData} className='add-button' />
+        <CustomButton
+          disabled={isDisabled}
+          text={editMode ? 'Zaktualizuj' : 'Dodaj'}
+          onClick={saveData}
+          className='add-button'
+        />
       </div>
     </CustomModal>
   )
