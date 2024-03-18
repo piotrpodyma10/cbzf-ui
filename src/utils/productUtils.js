@@ -6,6 +6,9 @@ import E from '../assets/imgs/indexes/E.png'
 
 export const getIndex = (value) => {
   let index = A
+  if (!value) {
+    return
+  }
   if (value <= 14 && value >= 11) {
     index = B
   }

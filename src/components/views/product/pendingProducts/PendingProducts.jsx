@@ -48,7 +48,7 @@ export const PendingProducts = () => {
     setProduct({})
   }
 
-  const editAccess = isExpert || isAdmin
+  const editAccess = isExpert || isSuperExpert || isAdmin
   const approveAccess = isSuperExpert || isAdmin
 
   const fetchPendingProducts = () => {

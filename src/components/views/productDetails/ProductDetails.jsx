@@ -11,6 +11,8 @@ import {
 import { useParams } from 'react-router-dom'
 import { getIndex } from '../../../utils/productUtils'
 import './ProductDetails.scss'
+import { List } from '../../common/list/List'
+import { ProductIndexes } from './productIndexes/ProductIndexes'
 
 export const ProductDetails = () => {
   const { id } = useParams()
@@ -20,62 +22,57 @@ export const ProductDetails = () => {
   const [labels, setLabels] = useState([])
   const [indexes, setIndexes] = useState([])
 
-  const {
-    indeksE = '',
-    indeksV,
-    indeksM,
-    indeksO,
-    indeksF,
-    indeksP,
-    indeksS,
-    indeksT,
-  } = indexes && indexes.length > 0 && indexes?.[0]
+  // const {
+  //   indeksE = '',
+  //   indeksV,
+  //   indeksM,
+  //   indeksO,
+  //   indeksF,
+  //   indeksP,
+  //   indeksS,
+  //   indeksT,
+  // } = indexes && indexes.length > 0 && indexes?.[0]
+
+  // 2. Dodackolumna indeks
+  // 3. indeksy wyliczane
 
   useEffect(() => {
     getProducts('', { productId: id }).then((response) => {
       const data = response.data
-      if (data) {
-        setProduct(data)
+      if (data && data.length > 0) {
+        const { indicesEntity, ...rest } = data?.[0]
+        console.log('REST', rest)
+        console.log('indexes', indexes)
+        setProduct(rest)
+        // setIndexes(indicesEntity)
       }
     })
-    getProductNutrition(1).then((response) => {
+    getProductNutrition(id).then((response) => {
       const data = response.data
       if (data) {
         setNutrition(data)
       }
     })
 
-    getProductIndexes(2).then((response) => {
-      const data = response.data
+    getProductIndexes(id).then((response) => {
+      const data = response.data?.[0]
       if (data) {
         setIndexes(data)
       }
     })
-    getProductIngredients(3).then((response) => {
+    getProductIngredients(id).then((response) => {
       const data = response.data
-      if (data) {
-        setIngredients(data)
+      if (data && data.length > 0) {
+        setIngredients(data[0])
       }
     })
-    getProductLabels(3).then((response) => {
+    getProductLabels(id).then((response) => {
       const data = response.data
-      if (data) {
-        setLabels(data)
+      if (data && data.length > 0) {
+        setLabels(data[0])
       }
     })
   }, [])
-
-  const tableData = {
-    rows: product,
-    columns: [
-      { label: 'Kod EAN', id: 'kodEan' },
-      { label: 'Nazwa', id: 'nazwaProdukt' },
-      { label: 'Opis', id: 'opisProdukt' },
-      { label: 'Waga', id: 'wagaProdukt' },
-      { label: 'Opakowanie', id: 'opakowanie' },
-      { label: 'Kraj', id: 'idKraj' },
-    ],
-  }
 
   const wartosciOdz = [
     { avgLife: 'Wartość energetyczna', '100ml': '151 kJ\n 36 kcal', '75ml': '114 kJ\n 27 kcal', rws: '1%' },
@@ -108,57 +105,25 @@ export const ProductDetails = () => {
           <Card className='product-details'>
             <div className='title'>Szczegóły Produktu</div>
             <div className='details-table'>
-              <DataTable data={tableData} noPagination={true} />
-            </div>
-          </Card>
-          {/* <Card className='product-indexes'>
-            <div className='title'>Indeksy</div>
-            <div className='index-container'>
               <div>
-                <div className='index'>
-                  <span className='index-title'>Indeks E:</span>
-                  {indeksE}
-                </div>
-                <div className='index'>
-                  <span className='index-title'>Indeks V:</span>
-                  {indeksV}
-                </div>
-                <div className='index'>
-                  <span className='index-title'>Indeks M:</span>
-                  {indeksM}
-                </div>
-                <div className='index'>
-                  <span className='index-title'>Indeks O:</span>
-                  {indeksO}
-                </div>
-                <div className='index'>
-                  <span className='index-title'>Indeks P:</span>
-                  {indeksP}
-                </div>
-                <div className='index'>
-                  <span className='index-title'>Indeks F:</span>
-                  {indeksF}
-                </div>
-                <div className='index'>
-                  <span className='index-title'>Indeks S:</span>
-                  {indeksS}
-                </div>
-                <div className='index'>
-                  <span className='index-title'>Indeks T:</span>
-                  {indeksT}
-                </div>
+                <List data={product} />
+                <List data={labels} />
               </div>
-              {getIndex(indeksT)}
+              <div>
+                <List data={ingredients} />
+              </div>
             </div>
           </Card>
-          <Card className='product-labels'>Labels</Card> */}
-        </div>
-        <Card className='nutritions-card'>
-          <div className='title'>Wartości odżywcze</div>
-          <div className='nutritions-table'>
-            <DataTable data={productNutritions} noPagination={true} />
+          <div className='indexes-nutritions'>
+            <ProductIndexes product={indexes} />
+            <Card className='nutritions-card'>
+              <div className='title'>Wartości odżywcze</div>
+              <div className='nutritions-table'>
+                <DataTable data={productNutritions} noPagination={true} />
+              </div>
+            </Card>
           </div>
-        </Card>
+        </div>
       </div>
       <div className='details-container'></div>
     </div>

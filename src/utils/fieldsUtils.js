@@ -45,3 +45,11 @@ export const areRequiredFieldsSet = (setFields, allFields) => {
 
   return true
 }
+
+export const formatField = (inputString) => {
+  const words = inputString.split(/(?=[A-Z0-9])/)
+  const formattedString = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  return formattedString
+}
+
+export const blockedFliends = ['dataDodania', 'idProdukt']

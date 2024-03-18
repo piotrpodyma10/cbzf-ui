@@ -19,7 +19,7 @@ export const ApproveProductModal = ({ open, handleClose, product, fetchPendingPr
         setNutritions(response.data)
       })
     }
-  }, [idProdukt])
+  }, [product])
 
   const close = () => {
     handleClose()
@@ -34,7 +34,12 @@ export const ApproveProductModal = ({ open, handleClose, product, fetchPendingPr
       addProduct([product])
         .then((response) => {
           if (response.status === 200) {
-            addNutrition(nutritions)
+            const allPreparedNutritions = nutritions.map((nutritionField, index) => ({
+              idProdukt: nutritionField.nutritionPrimaryKey.idProdukt,
+              idNutrient: nutritionField.nutritionPrimaryKey.idNutrient,
+              ...nutritionField,
+            }))
+            addNutrition(allPreparedNutritions)
               .then((response) => {
                 toast.success('Produkt został zatwierdzony')
                 fetchPendingProducts()

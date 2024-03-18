@@ -99,7 +99,9 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   }
 
   const saveData = () => {
-    const allFields = editMode ? [{ ...fields, approvedByExpert: true }] : [{ ...fields, idDostawca: id }]
+    const allFields = editMode
+      ? [{ ...fields, approvedByExpert: true }]
+      : [{ ...fields, idDostawca: id, approvedByExpert: false }]
     addPendingProduct(allFields)
       .then((response) => {
         const productId = response.data
