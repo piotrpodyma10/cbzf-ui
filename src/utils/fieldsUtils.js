@@ -53,3 +53,12 @@ export const formatField = (inputString) => {
 }
 
 export const blockedFliends = ['dataDodania', 'idProdukt']
+
+export const countIndexes = (fields) => {
+  if (fields?.length > 0) {
+    let sumOfValues = 0
+    fields.forEach((field) => (sumOfValues = sumOfValues + field?.indeks))
+    return sumOfValues
+  }
+  return 0
+}

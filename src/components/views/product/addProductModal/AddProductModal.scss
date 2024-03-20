@@ -1,6 +1,6 @@
 .add-product-modal {
   height: 650px;
-  width: 600px !important;
+  width: 650px !important;
 
   .container {
     padding: 10px;
@@ -33,6 +33,11 @@
       }
 
       .rws {
+        width: 200px;
+      }
+
+      .index {
+        margin-left: 20px;
         width: 150px;
       }
     }

@@ -4,22 +4,6 @@ import Tooltip from '@mui/material/Tooltip'
 import './Row.scss'
 
 function Row({ ids, row }) {
-  const transactionBanner = (fundsAvailable, currency) => {
-    const { floatingValue = 0, spaceValue = '', spaceFloatingValue = '' } = fundsAvailable || {}
-    let resultClass = 'positive-value'
-    if (floatingValue < 0) resultClass = 'negative-value'
-    return (
-      <TableCell align={'center'}>
-        <Tooltip className='tooltip' title={spaceValue} arrow placement='top'>
-          <span className={`status ${resultClass}`}>
-            {floatingValue > 0 && '+'}
-            {spaceFloatingValue} {currency}
-          </span>
-        </Tooltip>
-      </TableCell>
-    )
-  }
-
   return (
     <TableRow className='table-row' hover sx={{ '& > *': { borderBottom: 'unset' } }}>
       {ids.map((id, index) => {
@@ -28,13 +12,21 @@ function Row({ ids, row }) {
           const obj = id.split('.')
 
           if (typeof row[obj[0]] === 'object') {
-            value = row[obj[0]][obj[1]];
+            value = row[obj[0]][obj[1]]
           }
         }
 
         if (typeof value === 'string' && value?.includes('\n')) {
           const splitValue = value.split('\n')
-          value = <>{splitValue[0]} <div>{splitValue[1]}</div> </>
+          value = (
+            <>
+              {splitValue[0]} <div>{splitValue[1]}</div>{' '}
+            </>
+          )
+        }
+
+        if (typeof value === 'boolean' || row?.[id] === false) {
+          value = value ? 'Tak' : 'Nie'
         }
 
         return (

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { config } from '../../../utils/config'
 
-export const getRateOfProduct = () => {
-  return axioss.get(config.endpoints.rate)
+export const getRateOfProduct = (productId) => {
+  return axios.get(config.endpoints.rate, productId)
 }
 
 export const rateProduct = (rates) => {

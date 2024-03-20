@@ -16,9 +16,9 @@ import Row from './row/Row'
 import Filters from '../filters/Filters'
 import './DataTable.scss'
 
-export default function DataTable({ data, noPagination }) {
+export default function DataTable({ data, noPagination, all }) {
   const { rows, columns } = data
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsPerPage, setRowsPerPage] = useState(all ? -1 : 10)
   const [orderBy, setOrderBy] = useState('status')
   const [order, setOrder] = useState('asc')
   const [page, setPage] = useState(0)
@@ -60,7 +60,11 @@ export default function DataTable({ data, noPagination }) {
                   let displayLabel = column.label
                   if (displayLabel.includes('\n')) {
                     const splitValue = displayLabel.split('\n')
-                    displayLabel = <div><div>{splitValue[0]}</div> <div>{splitValue[1]}</div> </div>
+                    displayLabel = (
+                      <div>
+                        <div>{splitValue[0]}</div> <div>{splitValue[1]}</div>{' '}
+                      </div>
+                    )
                   }
 
                   return (
@@ -91,21 +95,21 @@ export default function DataTable({ data, noPagination }) {
         </Table>
       </TableContainer>
       {!noPagination && (
-      <TableFooter>
-        <TableRow>
-          <TablePagination
-            className='table-pagination'
-            rowsPerPageOptions={[5, 10, 15, 25, { label: 'All', value: -1 }]}
-            labelRowsPerPage={'Ilość wierszy na strone'}
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            ActionsComponent={Pagination}
-          />
-        </TableRow>
-      </TableFooter>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              className='table-pagination'
+              rowsPerPageOptions={[5, 10, 15, 25, { label: 'All', value: -1 }]}
+              labelRowsPerPage={'Ilość wierszy na strone'}
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              ActionsComponent={Pagination}
+            />
+          </TableRow>
+        </TableFooter>
       )}
     </div>
   )

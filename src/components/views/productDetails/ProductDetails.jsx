@@ -13,6 +13,8 @@ import { getIndex } from '../../../utils/productUtils'
 import './ProductDetails.scss'
 import { List } from '../../common/list/List'
 import { ProductIndexes } from './productIndexes/ProductIndexes'
+import { CustomAccordion } from '../../common/customAccordion/CustomAccordion'
+import { getRateOfProduct } from '../../../features/services/rate/rate.service'
 
 export const ProductDetails = () => {
   const { id } = useParams()
@@ -21,6 +23,7 @@ export const ProductDetails = () => {
   const [ingredients, setIngredients] = useState([])
   const [labels, setLabels] = useState([])
   const [indexes, setIndexes] = useState([])
+  const [rates, setRates] = useState([])
 
   // const {
   //   indeksE = '',
@@ -41,8 +44,6 @@ export const ProductDetails = () => {
       const data = response.data
       if (data && data.length > 0) {
         const { indicesEntity, ...rest } = data?.[0]
-        console.log('REST', rest)
-        console.log('indexes', indexes)
         setProduct(rest)
         // setIndexes(indicesEntity)
       }
@@ -72,6 +73,12 @@ export const ProductDetails = () => {
         setLabels(data[0])
       }
     })
+    getRateOfProduct(id).then((response) => {
+      const data = response.data
+      if (data && data.length > 0) {
+        setRates(data)
+      }
+    })
   }, [])
 
   const wartosciOdz = [
@@ -98,29 +105,63 @@ export const ProductDetails = () => {
     ],
   }
 
+  const productParameters = {
+    rows: rates,
+    columns: [
+      { label: 'Parametr ID', id: 'idParametr' },
+      { label: 'Grupa', id: 'nazwaGrupa' },
+      { label: 'Parametr', id: 'nazwaPar' },
+      { label: 'Wartość', id: 'value' },
+    ],
+  }
+
+  const productDescription = {
+    kodEan: product.kodEan,
+    idKraj: product.idKraj,
+    wagaProdukt: product.wagaProdukt,
+    opakowanie: product.opakowanie,
+  }
+
   return (
     <div className='produt-details-page'>
       <div className='details-container'>
         <div className='details-cards-container'>
           <Card className='product-details'>
-            <div className='title'>Szczegóły Produktu</div>
-            <div className='details-table'>
-              <div>
-                <List data={product} />
-                <List data={labels} />
-              </div>
-              <div>
+            <div className='title'>{product.nazwaProdukt}</div>
+            <CustomAccordion title={'Opis produktu'}>
+              <div className='description'>{product.opisProdukt}</div>
+              <List data={productDescription} />
+            </CustomAccordion>
+            <CustomAccordion title={'Skład produktu'}>
+              <div className='nutritions-table'>
                 <List data={ingredients} />
               </div>
-            </div>
+            </CustomAccordion>
+            <CustomAccordion title={'Dodatkowy opis'}>
+              <div className='nutritions-table'>
+                <List data={labels} />
+              </div>
+            </CustomAccordion>
+            <CustomAccordion title={'Parametry'}>
+              <div className='nutritions-table'>
+                <DataTable data={productParameters} all={true} noPagination={true} />
+              </div>
+            </CustomAccordion>
           </Card>
           <div className='indexes-nutritions'>
             <ProductIndexes product={indexes} />
             <Card className='nutritions-card'>
               <div className='title'>Wartości odżywcze</div>
-              <div className='nutritions-table'>
-                <DataTable data={productNutritions} noPagination={true} />
-              </div>
+              <CustomAccordion title={'Ogólne'}>
+                <div className='nutritions-table'>
+                  <DataTable data={productNutritions} noPagination={true} />
+                </div>
+              </CustomAccordion>
+              <CustomAccordion title={'Szczegółowe'}>
+                <div className='nutritions-table'>
+                  <DataTable data={productNutritions} noPagination={true} />
+                </div>
+              </CustomAccordion>
             </Card>
           </div>
         </div>

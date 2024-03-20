@@ -15,7 +15,7 @@ import {
   productNutritionVitaminFields,
   productSquadFields,
 } from '../../../../utils/dataUtils'
-import { handleFields } from '../../../../utils/fieldsUtils'
+import { countIndexes, handleFields } from '../../../../utils/fieldsUtils'
 import {
   addPendingNutrition,
   addPendingProduct,
@@ -29,7 +29,7 @@ import './AddProductModal.scss'
 import { isNotEmpty } from '../../../../utils/userUtils'
 
 export const AddProductModal = ({ handleClose, open, product = {}, editMode = false, fetchPendingProducts }) => {
-  const { user } = useSelector(auth)
+  const { user, isProvider } = useSelector(auth)
   const { supplier = {} } = user
   const { id = '' } = supplier
   const [fields, setFields] = useState({})
@@ -82,6 +82,10 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   }, [product])
 
   const handleNutritionUpdate = (nazwaGrupy, nazwa, cell, newValue) => {
+    if (cell === 'indeks' && newValue > 3) {
+      return
+    }
+
     const updatedItems = nutritionfields.map((field) => {
       if (field.nazwaGrupy === nazwaGrupy && field.nazwa === nazwa) {
         return { ...field, [cell]: newValue }
@@ -138,6 +142,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     (field) =>
       field.nazwaGrupy === 'Wartość Energetyczna' || field.nazwaGrupy === 'Białko' || field.nazwaGrupy === 'Sól'
   )
+
+  const allIndexes = [generalata, fatData, carbioData, vitaminsData, mineralsData]
   return (
     <CustomModal className='add-product-modal' open={open} handleClose={close}>
       <div className='container'>
@@ -237,6 +243,18 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       label={'Procent RWS'}
                     />
+                    {!isProvider && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
+                        size='small'
+                        maxNumber={3}
+                        className='index'
+                        type={'number'}
+                        value={f.indeks}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Indeks'}
+                      />
+                    )}
                   </div>
                 )
               })}
@@ -263,6 +281,18 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       label={'Procent RWS'}
                     />
+                    {!isProvider && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
+                        size='small'
+                        className='index'
+                        maxNumber={3}
+                        type={'number'}
+                        value={f.indeks}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Indeks'}
+                      />
+                    )}
                   </div>
                 )
               })}
@@ -289,6 +319,18 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       type={'number'}
                       label={'Procent RWS'}
                     />
+                    {!isProvider && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
+                        size='small'
+                        className='index'
+                        maxNumber={3}
+                        type={'number'}
+                        value={f.indeks}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Indeks'}
+                      />
+                    )}
                   </div>
                 )
               })}
@@ -315,6 +357,18 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       type={'number'}
                       label={'Procent RWS'}
                     />
+                    {!isProvider && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
+                        size='small'
+                        className='index'
+                        maxNumber={3}
+                        type={'number'}
+                        value={f.indeks}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Indeks'}
+                      />
+                    )}
                   </div>
                 )
               })}
@@ -341,26 +395,41 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       type={'number'}
                       label={'Procent RWS'}
                     />
+                    {!isProvider && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
+                        size='small'
+                        className='index'
+                        maxNumber={3}
+                        type={'number'}
+                        value={f.indeks}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Indeks'}
+                      />
+                    )}
                   </div>
                 )
               })}
             </CustomAccordion>
           </CustomAccordion>
-          <CustomAccordion title={'Indeksy'}>
-            {praductIndexFields.map((f, key) => {
-              return (
-                <div key={key} className='field'>
-                  <CustomTextField
-                    onChange={(e) => handleFields(e, f, setFields, fields)}
-                    type={f.type}
-                    value={fields?.[f.field]}
-                    InputLabelProps={editMode ? { shrink: true } : {}}
-                    label={f.label}
-                  />
-                </div>
-              )
-            })}
-          </CustomAccordion>
+          {!isProvider && (
+            <CustomAccordion title={'Indeksy'}>
+              {praductIndexFields.map((f, key) => {
+                return (
+                  <div key={key} className='field'>
+                    <CustomTextField
+                      disabled
+                      onChange={(e) => handleFields(e, f, setFields, fields)}
+                      type={f.type}
+                      value={countIndexes(allIndexes[key])}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
+                      label={f.label}
+                    />
+                  </div>
+                )
+              })}
+            </CustomAccordion>
+          )}
         </div>
         <CustomButton
           disabled={isDisabled}
