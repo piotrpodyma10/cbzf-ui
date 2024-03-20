@@ -21,5 +21,5 @@ export const getIndex = (value) => {
   if (value <= 2) {
     index = E
   }
-  return <img src={A} />
+  return <img src={index} />
 }
