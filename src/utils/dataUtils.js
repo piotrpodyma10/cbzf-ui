@@ -74,7 +74,7 @@ export const praductIndexFields = [
   { field: 'indeksF', type: 'number', label: 'Indeks F' },
   { field: 'indeksP', type: 'number', label: 'Indeks P' },
   { field: 'indeksS', type: 'number', label: 'Indeks S' },
-  // { field: 'indeksT', type: 'number', label: 'Indeks T' },
+  { field: 'indeksT', type: 'number', label: 'Indeks T' },
 ]
 
 export const productCategoryFields = [
@@ -158,8 +158,17 @@ export const productNutritionGeneralFields = [
     jednostka: 'kcal',
     procentRws: 0,
     indeks: null,
+    groupIndeks: 'indeksE',
   },
-  { nazwaGrupy: 'Białko', nazwa: '', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Białko',
+    nazwa: '',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+    groupIndeks: 'indeksP',
+  },
   { nazwaGrupy: 'Sól', nazwa: '', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
 ]
 
@@ -168,6 +177,7 @@ export const productNutritionFatFields = [
   { nazwaGrupy: 'Tłuszcz', nazwa: 'Kwasy nasycone', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Tłuszcz', nazwa: 'Kwasy jednonienasycone', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Tłuszcz', nazwa: 'Kwasy wielonienasycone', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Tłuszcz', nazwa: 'Cholesterol', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
 ]
 
 export const productNutritionCarboFields = [
@@ -176,24 +186,217 @@ export const productNutritionCarboFields = [
   { nazwaGrupy: 'Węglowodany', nazwa: 'Cukry dodane', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Węglowodany', nazwa: 'Poliole', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Węglowodany', nazwa: 'Skrobia', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
-  { nazwaGrupy: 'Węglowodany', nazwa: 'Błonnik', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Węglowodany',
+    nazwa: 'Błonnik',
+    zawartosc: 0,
+    jednostka: 'g',
+    procentRws: 0,
+    indeks: null,
+    groupIndeks: 'indeksF',
+  },
 ]
 
 export const productNutritionVitaminFields = [
-  { nazwaGrupy: 'Witaminy', nazwa: 'Total', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
-  { nazwaGrupy: 'Witaminy', nazwa: 'A', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Witaminy',
+    nazwa: 'Total',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+    groupIndeks: 'indeksV',
+  },
+  { nazwaGrupy: 'Witaminy', nazwa: 'A', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Witaminy', nazwa: 'B1', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Witaminy', nazwa: 'B2', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Witaminy', nazwa: 'B3', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'B5', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'B6', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'B7', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'B9', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'B12', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
   { nazwaGrupy: 'Witaminy', nazwa: 'C', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
-  { nazwaGrupy: 'Witaminy', nazwa: 'D', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'D', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'E', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'K', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
 ]
 
 export const productNutritionMineralFields = [
-  { nazwaGrupy: 'Minerały', nazwa: 'Total', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
-  { nazwaGrupy: 'Minerały', nazwa: 'Sód', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
-  { nazwaGrupy: 'Minerały', nazwa: 'Potas', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
-  { nazwaGrupy: 'Minerały', nazwa: 'Wapń', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Minerały',
+    nazwa: 'Total',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+    groupIndeks: 'indeksM',
+  },
+  { nazwaGrupy: 'Minerały', nazwa: 'Sód', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null }, // ZAPOMNIELI?
+  { nazwaGrupy: 'Minerały', nazwa: 'Potas', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Wapń', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Fosfor', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Magnez', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Żelazo', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Cynk', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Fluorek', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Mangan', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Miedź', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Jod', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Selen', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Molibden', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Minerały', nazwa: 'Chrom', zawartosc: 0, jednostka: 'mcg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionOmgaFields = [
+  {
+    nazwaGrupy: 'Omega-3',
+    nazwa: 'Total',
+    zawartosc: 0,
+    jednostka: 'g',
+    procentRws: 0,
+    indeks: null,
+    groupIndeks: 'indeksO',
+  },
+  { nazwaGrupy: 'Omega-3', nazwa: 'ALA', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Omega-3', nazwa: 'EPA+DHA', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+]
+
+export const productNutritionOtherVitaminsFields = [
+  { nazwaGrupy: 'Witaminy inne', nazwa: 'B4', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+]
+
+export const productNutritionAntyoksydantyFields = [
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'ORAC', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'Polifenole', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'Flawonoidy', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'Karotenoidy', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'Rezerwa 1', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'Rezerwa 2', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'Rezerwa 3', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Antyoksydanty', nazwa: 'Rezerwa 4', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionBacteriaFields = [
+  {
+    nazwaGrupy: 'Żywe bakterie',
+    nazwa: 'Żywe kultury jogurtowe',
+    zawartosc: 0,
+    jednostka: 'szt.',
+    procentRws: 0,
+    indeks: null,
+  },
+  {
+    nazwaGrupy: 'Żywe bakterie',
+    nazwa: 'Bifidobacterium',
+    zawartosc: 0,
+    jednostka: 'szt.',
+    procentRws: 0,
+    indeks: null,
+  },
+  { nazwaGrupy: 'Żywe bakterie', nazwa: 'Lactobacillus', zawartosc: 0, jednostka: 'szt.', procentRws: 0, indeks: null },
+]
+
+export const productNutritionOligoFields = [
+  { nazwaGrupy: 'Oligo/Polisacharydy', nazwa: 'Laktuloza', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Oligo/Polisacharydy',
+    nazwa: 'Alfa-cyklodekstryna',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+  },
+  { nazwaGrupy: 'Oligo/Polisacharydy', nazwa: 'Chitozan', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Oligo/Polisacharydy', nazwa: 'Inulina', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionGlikozydyFields = [
+  { nazwaGrupy: 'Glikozydy', nazwa: 'Betanina', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionEnzymyFields = [
+  { nazwaGrupy: 'Enzymy', nazwa: 'Laktaza', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionKwasyOrgFields = [
+  { nazwaGrupy: 'Kwasy Organiczne', nazwa: 'Kreatyna', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Kwasy Organiczne', nazwa: 'Kreatyna', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Kwasy Organiczne', nazwa: 'Kreatyna', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Kwasy Organiczne', nazwa: 'Kreatyna', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Kwasy Organiczne', nazwa: 'Kreatyna', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionHormonyFields = [
+  { nazwaGrupy: 'Hormony', nazwa: 'Melatonina', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionSteroleFields = [
+  {
+    nazwaGrupy: 'Sterole/Stanole',
+    nazwa: 'fitosterole/stanole/estry',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+  },
+]
+
+export const productNutritionFosfoFields = [
+  { nazwaGrupy: 'Fosfolipidy', nazwa: 'Lecytyna', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionAminoFields = [
+  { nazwaGrupy: 'Aminokwasy egzogenne', nazwa: 'Total', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Aminokwasy egzogenne', nazwa: 'Arginina', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Aminokwasy egzogenne',
+    nazwa: 'Fenyloalanina ',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+  },
+  {
+    nazwaGrupy: 'Aminokwasy egzogenne',
+    nazwa: 'Histydyna',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+  },
+  {
+    nazwaGrupy: 'Aminokwasy egzogenne',
+    nazwa: 'Izoleucyna ',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+  },
+  { nazwaGrupy: 'Aminokwasy egzogenne', nazwa: 'Leucyna ', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Aminokwasy egzogenne', nazwa: 'Lizyna', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Aminokwasy egzogenne',
+    nazwa: 'Metionina',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+  },
+  { nazwaGrupy: 'Aminokwasy egzogenne', nazwa: 'Treonina', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Aminokwasy egzogenne',
+    nazwa: 'Tryptofan',
+    zawartosc: 0,
+    jednostka: 'mg',
+    procentRws: 0,
+    indeks: null,
+  },
+  { nazwaGrupy: 'Aminokwasy egzogenne', nazwa: 'Walina', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+]
+
+export const productNutritionInneFields = [
+  { nazwaGrupy: 'Inne', nazwa: 'Węgiel aktywowany', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
 ]
 
 export const productNutritionCategories = [
