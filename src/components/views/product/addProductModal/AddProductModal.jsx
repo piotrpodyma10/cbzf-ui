@@ -115,39 +115,38 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     }
   }, [product])
 
-  const handleNutritionUpdate = (nazwaGrupy, nazwa, cell, newValue) => {
-    if (cell === 'indeks' && newValue > 3) {
+  const handleNutritionUpdate = (nazwaGrupy, nazwa, cell, newValue, total = true) => {
+    if (cell === 'indeks' && newValue > 3 && total) {
       return
     }
 
-    const updatedItems = nutritionfields.map((field) => {
-      if (field.nazwaGrupy === nazwaGrupy && field.nazwa === nazwa) {
-        return { ...field, [cell]: newValue }
-      }
-      return field
+    setNutritionFields((prevState) => {
+      const updatedItems = prevState.map((field) => {
+        if (field.nazwaGrupy === nazwaGrupy && field.nazwa === nazwa) {
+          return { ...field, [cell]: newValue }
+        }
+        return field
+      })
+      return updatedItems
     })
-
-    setNutritionFields(updatedItems)
   }
 
-  const getCalculatedIndexes = () => {
+  const getCalculatedIndexes = async () => {
     if (nutritionfields.length > 0) {
-      calculateIndexes(nutritionfields)
-        .then((response) => {
-          const data = response.data
-          console.log('DATA', response)
-          if (isNotEmpty(data)) {
-            setIndexes(data)
-            // OMEGA TOTAL
-            // WITAMINY TOTAL
-            // MINERALY TOTAL
-            // nutritionfields.filter
-          }
-        })
-        .catch((e) => {
-          console.log('Error', e)
-          toast.error('Problem with calculating the indexes')
-        })
+      try {
+        const response = await calculateIndexes(nutritionfields)
+        const data = response.data
+        console.log('DATA', response)
+        if (isNotEmpty(data)) {
+          setIndexes(data)
+          await handleNutritionUpdate('Omega-3', 'Total', 'indeks', data.indeksO, false)
+          await handleNutritionUpdate('Minerały', 'Total', 'indeks', data.indeksM, false)
+          await handleNutritionUpdate('Witaminy', 'Total', 'indeks', data.indeksV, false)
+        }
+      } catch (e) {
+        console.log('Error', e)
+        toast.error('Problem with calculating the indexes')
+      }
     }
   }
 
@@ -424,6 +423,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             </CustomAccordion>
             <CustomAccordion title={'Witaminy'}>
               {vitaminsData.map((f, key) => {
+                const isTotal = f.nazwa === 'Total'
+
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
@@ -450,9 +451,10 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        disabled={isTotal}
                         type={'number'}
                         value={f.indeks}
-                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        InputLabelProps={editMode || isTotal ? { shrink: true } : {}}
                         label={'Indeks'}
                       />
                     )}
@@ -462,6 +464,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             </CustomAccordion>
             <CustomAccordion title={'Minerały'}>
               {mineralsData.map((f, key) => {
+                const isTotal = f.nazwa === 'Total'
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
@@ -488,9 +491,10 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        disabled={isTotal}
                         type={'number'}
                         value={f.indeks}
-                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        InputLabelProps={editMode || isTotal ? { shrink: true } : {}}
                         label={'Indeks'}
                       />
                     )}
@@ -500,6 +504,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             </CustomAccordion>
             <CustomAccordion title={'Omega-3'}>
               {OmegaData.map((f, key) => {
+                const isTotal = f.nazwa === 'Total'
+                console.log('OKWKD', f)
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
@@ -527,8 +533,9 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         className='index'
                         maxNumber={3}
                         type={'number'}
+                        disabled={isTotal}
                         value={f.indeks}
-                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        InputLabelProps={editMode || isTotal ? { shrink: true } : {}}
                         label={'Indeks'}
                       />
                     )}
