@@ -55,14 +55,6 @@ export default function AddProviderModal({ open, handleClose }) {
       })
   }
 
-  // const handleFields = (e, f) => {
-  //   let value = e.target.value
-  //   if (/^\d+$/.test(value)) {
-  //     value = e.target.valueAsNumber
-  //   }
-  //   setFields({ ...fields, [f.field]: value })
-  // }
-
   return (
     <CustomModal className='add-provider-modal' open={open} handleClose={close}>
       <div className='container'>

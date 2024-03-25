@@ -51,8 +51,6 @@ function Rate() {
     ],
   }
 
-  console.log('prz', product)
-
   return (
     <Card className='rate'>
       <DataTable data={productsData} />

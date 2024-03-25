@@ -59,22 +59,6 @@ export const ProductPanel = ({ isConsumer }) => {
     fetchProducts()
   }, [])
 
-  // OLD
-  // columns: [
-  //   { label: 'Kod EAN', id: 'kodEAN' },
-  //   { label: 'Nazwa', id: 'nazwa' },
-  //   { label: 'Producent', id: 'producent' },
-  //   { label: 'Kraj', id: 'idKraj' },
-  //   { label: 'Waga', id: 'waga' },
-  //   { label: 'Wartość Energetyczna', id: 'wartoscEnergetyczna' },
-  //   { label: 'Indeks F-FOOD', id: 'indeks' },
-  //   { label: 'indeks_v', id: 'indeks_v' },
-  //   { label: 'indeks_m', id: 'indeks_m' },
-  //   { label: 'indeks_o', id: 'indeks_o' },
-  //   { label: 'indeks_f', id: 'indeks_f' },
-  //   { label: 'indeks_p', id: 'indeks_p' },
-  // ],
-
   const tableData = {
     rows: products,
     columns: [

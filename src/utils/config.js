@@ -22,5 +22,6 @@ export const config = {
     getIngredients: `${apiUrl}/cbzf/get_ingredients`,
     addPendingNutrition: `${apiUrl}/cbzf/store_temporary_nutrition`,
     addNutrition: `${apiUrl}/cbzf/store_nutrition`,
+    calculateIndexes: `${apiUrl}/cbzf/calculate_indices`,
   },
 }

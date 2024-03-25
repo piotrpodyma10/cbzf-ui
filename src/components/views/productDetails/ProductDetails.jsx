@@ -25,27 +25,12 @@ export const ProductDetails = () => {
   const [indexes, setIndexes] = useState([])
   const [rates, setRates] = useState([])
 
-  // const {
-  //   indeksE = '',
-  //   indeksV,
-  //   indeksM,
-  //   indeksO,
-  //   indeksF,
-  //   indeksP,
-  //   indeksS,
-  //   indeksT,
-  // } = indexes && indexes.length > 0 && indexes?.[0]
-
-  // 2. Dodackolumna indeks
-  // 3. indeksy wyliczane
-
   useEffect(() => {
     getProducts('', { productId: id }).then((response) => {
       const data = response.data
       if (data && data.length > 0) {
         const { indicesEntity, ...rest } = data?.[0]
         setProduct(rest)
-        // setIndexes(indicesEntity)
       }
     })
     getProductNutrition(id).then((response) => {

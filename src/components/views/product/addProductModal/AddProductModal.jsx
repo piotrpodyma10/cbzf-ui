@@ -32,6 +32,7 @@ import { countIndexes, handleFields } from '../../../../utils/fieldsUtils'
 import {
   addPendingNutrition,
   addPendingProduct,
+  calculateIndexes,
   getPendingProductNutrition,
   getProductNutrition,
 } from '../../../../features/services/product/product.service'
@@ -46,13 +47,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const { supplier = {} } = user
   const { id = '' } = supplier
   const [fields, setFields] = useState({})
-  // const allNutritions = [
-  //   ...productNutritionGeneralFields,
-  //   ...productNutritionFatFields,
-  //   ...productNutritionCarboFields,
-  //   ...productNutritionVitaminFields,
-  //   ...productNutritionMineralFields,
-  // ]
 
   const allNutritions = [
     ...productNutritionGeneralFields,
@@ -76,6 +70,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   ]
 
   const [nutritionfields, setNutritionFields] = useState(allNutritions)
+  const [indexes, setIndexes] = useState({})
   const [porcja, setPorcja] = useState(0)
 
   const allFields = [
@@ -135,6 +130,17 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     setNutritionFields(updatedItems)
   }
 
+  const getCalculatedIndexes = () => {
+    if (nutritionfields.length > 0) {
+      calculateIndexes(nutritionfields)
+        .then((response) => {})
+        .catch((e) => {
+          console.log('Error', e)
+          toast.error('Problem with calculating the indexes')
+        })
+    }
+  }
+
   const close = () => {
     setFields({})
     setNutritionFields(allNutritions)
@@ -148,7 +154,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     addPendingProduct(allFields)
       .then((response) => {
         const productId = response.data
-        console.log('porcja', porcja)
         const allPreparedNutritions = nutritionfields.map((nutritionField, index) => ({
           idProdukt: productId,
           idNutrient: index + 1,
@@ -198,9 +203,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const otherData = nutritionfields.filter((field) => field.nazwaGrupy === 'Inne')
 
   const allIndexes = [generalata, fatData, carbioData, vitaminsData, mineralsData]
+  const canCalculate = !(!isProvider && nutritionfields.length > 0)
 
-  console.log('Fields', fields)
-  console.log('Nutri', nutritionfields)
   return (
     <CustomModal className='add-product-modal' open={open} handleClose={close}>
       <div className='container'>
@@ -289,6 +293,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                 label={'Porcja'}
               />
               {generalata.map((f, key) => {
+                const isWartosc = f.nazwaGrupy === 'Wartość Energetyczna'
+
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
@@ -313,7 +319,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       <CustomTextField
                         onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
                         size='small'
-                        maxNumber={3}
+                        minNumber={isWartosc ? 1 : 0}
+                        maxNumber={isWartosc ? 6 : 3}
                         className='index'
                         type={'number'}
                         value={f.indeks}
@@ -974,6 +981,12 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
           </CustomAccordion>
           {!isProvider && (
             <CustomAccordion title={'Indeksy'}>
+              <CustomButton
+                disabled={canCalculate}
+                text={'Oblicz Indexy'}
+                onClick={getCalculatedIndexes}
+                className='calculate-indexes'
+              />
               {praductIndexFields.map((f, key) => {
                 return (
                   <div key={key} className='field'>

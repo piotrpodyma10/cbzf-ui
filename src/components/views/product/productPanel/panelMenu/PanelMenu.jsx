@@ -10,12 +10,9 @@ import { isNotEmpty } from '../../../../../utils/userUtils'
 
 export const PanelMenu = ({ fetchProducts }) => {
   const [filters, setFilters] = useState({})
-  // const isDisabled = isNotEmpty(filters)
 
   const search = () => {
-    // if (isNotEmpty(filters)) {
-      fetchProducts(filters)
-    // }
+    fetchProducts(filters)
   }
 
   return (

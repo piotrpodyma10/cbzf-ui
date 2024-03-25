@@ -61,16 +61,6 @@ const RoleManagement = () => {
     fetchUsers()
   }, [])
 
-  // useEffect(() => {
-  //   axios.get(config.endpoints.users).then((response) => {
-  //     const allUsers = response.data.map((user) => ({
-  //       ...user,
-  //       action: <ActionButton user={user} />,
-  //     }))
-  //     setUsers(allUsers)
-  //   })
-  // }, [])
-
   const usersData = {
     rows: users,
     columns: [

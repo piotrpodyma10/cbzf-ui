@@ -70,7 +70,6 @@ export default function DataTable({ data, noPagination, all }) {
                   return (
                     <TableCell
                       className='header-cell'
-                      // align={index ? 'center' : 'left'}
                       align={'center'}
                       key={index}
                       sortDirection={orderBy === column.id ? order : false}

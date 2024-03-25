@@ -62,3 +62,7 @@ export const addPendingNutrition = (nutritions) => {
 export const addNutrition = (nutritions) => {
   return axios.put(`${config.endpoints.addNutrition}`, nutritions)
 }
+
+export const calculateIndexes = (nutritions) => {
+  return axios.put(config.endpoints.calculateIndexes, nutritions)
+}

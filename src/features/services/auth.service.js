@@ -2,8 +2,6 @@ import axios from 'axios'
 import { EXPERT, PROVIDER, SUPER_EXPERT, allRoles, isNotEmpty } from '../../utils/userUtils'
 import { config } from '../../utils/config'
 
-// import config from '../config'
-
 const login = async (email, password) => {
   try {
     const userResponse = await axios.post(config.endpoints.log, {
@@ -12,13 +10,6 @@ const login = async (email, password) => {
     })
 
     const response = isNotEmpty(userResponse.data) ? userResponse.data : {}
-
-    // const user = {
-    //   email: email,
-    //   roles: allRoles,
-    //   firstName: 'Jan',
-    //   lastName: 'Kowalski',
-    // }
 
     if (response) {
       const user = response
@@ -31,33 +22,6 @@ const login = async (email, password) => {
   } catch (e) {
     return {}
   }
-
-  // return {}
-
-  // const user = {
-  //   email: email,
-  //   roles: allRoles,
-  //   firstName: 'Jan',
-  //   lastName: 'Kowalski',
-  // }
-
-  // if (email === 'e@e.com') {
-  //   user.roles = [EXPERT]
-  // }
-
-  // if (email === 'se@se.com') {
-  //   user.roles = [SUPER_EXPERT]
-  // }
-
-  // if (email === 'pr@pr.com') {
-  //   user.roles = [PROVIDER]
-  // }
-
-  // if (isNotEmpty(user)) {
-  //   localStorage.setItem('user', JSON.stringify(user))
-  // }
-
-  // return user
 }
 
 const logout = () => {

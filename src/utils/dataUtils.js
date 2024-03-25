@@ -109,46 +109,7 @@ export const productSquadFields = [
   { field: 'aromat', type: 'string', label: 'Aromat' },
   { field: 'poOtwarciu', type: 'string', label: 'Po Otwarciu' },
   { field: 'par1', type: 'number', label: 'PAR 1', required: true },
-
-  // { field: 'par1Nutrition', type: 'string', label: 'Par 1 Nutrition' },
-  // { field: 'par2Nutrition', type: 'string', label: 'Par 2 Nutrition' },
-  // { field: 'porcja', type: 'number', label: 'Porcja' },
-  // { field: 'idNutrient', type: 'string', label: 'Id Nutrient' },
-  // { field: 'nazwaGrupy', type: 'string', label: 'Nazwa Grupy' },
-  // { field: 'nazwa', type: 'string', label: 'Nazwa' },
-  // { field: 'zawartosc', type: 'number', label: 'Zawartość' },
-  // { field: 'jednostka', type: 'string', label: 'Jednostka' },
-  // { field: 'procentRws', type: 'number', label: 'Procent RWS' },
-  // { field: 'zawartoscPorcja', type: 'string', label: 'Zawartość Porcja' },
-  // { field: 'procentRwsPorcja', type: 'number', label: 'Procent RWS Porcja' },
 ]
-
-// export const productNutritionFields = [
-//   { nazwaGrupy: 'Wartość Energetyczna', nazwa: '', zawartosc: 0, jednostka: 'kcal', procentRws: 1 },
-//   { nazwaGrupy: 'Białko', nazwa: '', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Sól', nazwa: '', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Tłuszcz', nazwa: 'total', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Tłuszcz', nazwa: 'kwasy nasycone', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Tłuszcz', nazwa: 'kwasy jednonienasycone', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Tłuszcz', nazwa: 'kwasy wielonienasycone', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Węglowodany', nazwa: 'total', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Węglowodany', nazwa: 'cukry', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Węglowodany', nazwa: 'cukry dodane', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Węglowodany', nazwa: 'poliole', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Węglowodany', nazwa: 'skrobia', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Węglowodany', nazwa: 'błonnik', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Witaminy', nazwa: 'total', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Witaminy', nazwa: 'A', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Witaminy', nazwa: 'B1', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Witaminy', nazwa: 'B2', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Witaminy', nazwa: 'B3', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Witaminy', nazwa: 'C', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Witaminy', nazwa: 'D', zawartosc: 0, jednostka: 'mg', procentRws: 1 },
-//   { nazwaGrupy: 'Minerały', nazwa: 'total', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Minerały', nazwa: 'sód', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Minerały', nazwa: 'potas', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-//   { nazwaGrupy: 'Minerały', nazwa: 'wapń', zawartosc: 0, jednostka: 'g', procentRws: 1 },
-// ]
 
 export const productNutritionGeneralFields = [
   {

@@ -1,6 +1,5 @@
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import Tooltip from '@mui/material/Tooltip'
 import './Row.scss'
 
 function Row({ ids, row }) {
@@ -30,7 +29,6 @@ function Row({ ids, row }) {
         }
 
         return (
-          // <TableCell className={`table-cell ${index ? 'center' : 'left'}`} align={index ? 'center' : 'left'}>
           <TableCell key={index} className={`table-cell ${index ? 'center' : 'left'}`} align={'center'}>
             {value}
           </TableCell>
@@ -38,31 +36,6 @@ function Row({ ids, row }) {
       })}
     </TableRow>
   )
-}
-
-{
-  /* <TableCell className='table-cell' component='th' scope='row'>
-        {row.formattedDate}
-      </TableCell>
-      <TableCell className='table-cell' align='center'>
-        {row.userName}
-      </TableCell>
-      {transactionBanner(row.formattedFunds, row.currency)}
-      <TableCell className='table-cell' align='center'>
-        {row.balanceType}
-      </TableCell>
-      <TableCell className='table-cell' align='center'>
-        {row.balanceName}
-      </TableCell> */
-}
-{
-  /* // </TableRow> */
-}
-{
-  /* //   ) */
-}
-{
-  /* // } */
 }
 
 export default Row

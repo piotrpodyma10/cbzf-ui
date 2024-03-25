@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { config } from '../../../utils/config'
 
-// http://localhost:8080/cbzf/producent
-
 export const getProviders = () => {
   return axios.get(config.endpoints.provider)
 }
