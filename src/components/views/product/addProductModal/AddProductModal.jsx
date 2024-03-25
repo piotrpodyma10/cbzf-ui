@@ -82,7 +82,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     { field: 'idKraj', type: 'number', label: 'Id Kraj' },
   ]
 
-  const requiredFields = ['par1', 'par2', 'kodEan', 'nazwaProdukt', 'skladnikIlosc']
+  const requiredFields = ['par2', 'kodEan', 'nazwaProdukt', 'skladnikIlosc']
   const isDisabled = !requiredFields.every((field) => Object.keys(fields).includes(field))
 
   useEffect(() => {
@@ -133,7 +133,17 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const getCalculatedIndexes = () => {
     if (nutritionfields.length > 0) {
       calculateIndexes(nutritionfields)
-        .then((response) => {})
+        .then((response) => {
+          const data = response.data
+          console.log('DATA', response)
+          if (isNotEmpty(data)) {
+            setIndexes(data)
+            // OMEGA TOTAL
+            // WITAMINY TOTAL
+            // MINERALY TOTAL
+            // nutritionfields.filter
+          }
+        })
         .catch((e) => {
           console.log('Error', e)
           toast.error('Problem with calculating the indexes')
@@ -273,16 +283,20 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                 </div>
               )
             })}
-            PAR 2*
-            <CustomSwitch
-              value={fields.par2}
-              checked={fields.par2}
-              required={true}
-              onChange={(e, v) => handleFields({ target: { value: v } }, { field: 'par2' }, setFields, fields)}
-            />
           </CustomAccordion>
           <CustomAccordion title={'Wartości odżywcze'}>
             <CustomAccordion title={'Ogólne wartości'}>
+              <div>
+                <div>PAR 2*</div>
+                <span>g</span>
+                <CustomSwitch
+                  value={fields.par2}
+                  checked={fields.par2}
+                  required={true}
+                  onChange={(e, v) => handleFields({ target: { value: v } }, { field: 'par2' }, setFields, fields)}
+                />
+                <span>ml</span>
+              </div>
               <CustomTextField
                 onChange={(e) => setPorcja(e.target.value)}
                 size='small'
@@ -994,8 +1008,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       disabled
                       onChange={(e) => handleFields(e, f, setFields, fields)}
                       type={f.type}
-                      // value={countIndexes(allIndexes[key])}
-                      value={0}
+                      value={indexes[f.field] || 0}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       label={f.label}
                     />

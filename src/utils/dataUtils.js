@@ -96,7 +96,6 @@ export const productSquadFields = [
   { field: 'skladnik6', type: 'string', label: 'Składnik 6' },
   { field: 'skladnik7', type: 'string', label: 'Składnik 7' },
   { field: 'skladnik8', type: 'string', label: 'Składnik 8' },
-  { field: 'skladnik9', type: 'string', label: 'Składnik 9' },
   { field: 'dodatekIlosc', type: 'number', label: 'Dodatek Ilość' },
   { field: 'idDodatek1', type: 'number', label: 'Dodatek 1' },
   { field: 'idDodatek2', type: 'number', label: 'Dodatek 2' },
@@ -107,8 +106,6 @@ export const productSquadFields = [
   { field: 'idDodatek7', type: 'number', label: 'Dodatek 7' },
   { field: 'idDodatek8', type: 'number', label: 'Dodatek 8' },
   { field: 'aromat', type: 'string', label: 'Aromat' },
-  { field: 'poOtwarciu', type: 'string', label: 'Po Otwarciu' },
-  { field: 'par1', type: 'number', label: 'PAR 1', required: true },
 ]
 
 export const productNutritionGeneralFields = [
