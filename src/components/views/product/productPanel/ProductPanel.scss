@@ -25,4 +25,15 @@
       }
     }
   }
+
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .wartosci-odz {
+      display: inline;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+  }
 }

@@ -28,16 +28,34 @@ export const ProductPanel = ({ isConsumer }) => {
     navigate(moveToPage)
   }
 
+  const toNutritionsPage = (id) => {
+    const moveToPage = `/nutritions/${id}`
+    navigate(moveToPage)
+  }
+
   const actionButton = (id) => (
-    <CustomButton
-      text={
-        <div>
-          Szczegóły <ArrowForwardIosIcon />
-        </div>
-      }
-      className='details-page'
-      onClick={() => toDetailsPage(id)}
-    />
+    <div className='action-buttons'>
+      <CustomButton
+        text={
+          <div>
+            Szczegóły <ArrowForwardIosIcon />
+          </div>
+        }
+        className='details-page'
+        onClick={() => toDetailsPage(id)}
+      />
+      <div className='wartosci-odz'>
+        <CustomButton
+          text={
+            <div>
+              Wartości odżywcze <ArrowForwardIosIcon />
+            </div>
+          }
+          className='details-page'
+          onClick={() => toNutritionsPage(id)}
+        />
+      </div>
+    </div>
   )
 
   const fetchProducts = (filters = {}) => {

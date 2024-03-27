@@ -13,35 +13,35 @@ export const ProductIndexes = ({ product }) => {
         <div>
           <div className='index'>
             <span className='index-title'>Indeks E:</span>
-            {indeksE}
+            <div className='index-value'>{indeksE}</div>
           </div>
           <div className='index'>
             <span className='index-title'>Indeks V:</span>
-            {indeksV}
+            <div className='index-value'>{indeksV}</div>
           </div>
           <div className='index'>
             <span className='index-title'>Indeks M:</span>
-            {indeksM}
+            <div className='index-value'>{indeksM}</div>
           </div>
           <div className='index'>
             <span className='index-title'>Indeks O:</span>
-            {indeksO}
+            <div className='index-value'>{indeksO}</div>
           </div>
           <div className='index'>
             <span className='index-title'>Indeks P:</span>
-            {indeksP}
+            <div className='index-value'>{indeksP}</div>
           </div>
           <div className='index'>
             <span className='index-title'>Indeks F:</span>
-            {indeksF}
+            <div className='index-value'>{indeksF}</div>
           </div>
           <div className='index'>
             <span className='index-title'>Indeks S:</span>
-            {indeksS}
+            <div className='index-value'>{indeksS}</div>
           </div>
           <div className='index'>
             <span className='index-title'>Indeks T:</span>
-            {indeksT}
+            <div className='index-value'>{indeksT}</div>
           </div>
         </div>
         {getIndex(indeksT)}

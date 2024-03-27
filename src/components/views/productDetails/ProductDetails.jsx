@@ -119,7 +119,7 @@ export const ProductDetails = () => {
             </CustomAccordion>
             <CustomAccordion title={'Skład produktu'}>
               <div className='nutritions-table'>
-                <List data={ingredients} />
+                <List data={ingredients} notAllowEmpty={true} />
               </div>
             </CustomAccordion>
             <CustomAccordion title={'Dodatkowy opis'}>
@@ -135,7 +135,7 @@ export const ProductDetails = () => {
           </Card>
           <div className='indexes-nutritions'>
             <ProductIndexes product={indexes} />
-            <Card className='nutritions-card'>
+            {/* <Card className='nutritions-card'>
               <div className='title'>Wartości odżywcze</div>
               <CustomAccordion title={'Ogólne'}>
                 <div className='nutritions-table'>
@@ -147,7 +147,7 @@ export const ProductDetails = () => {
                   <DataTable data={productNutritions} noPagination={true} />
                 </div>
               </CustomAccordion>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </div>

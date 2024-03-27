@@ -16,7 +16,7 @@ import Row from './row/Row'
 import Filters from '../filters/Filters'
 import './DataTable.scss'
 
-export default function DataTable({ data, noPagination, all }) {
+export default function DataTable({ data, noPagination, all, isScroll = false }) {
   const { rows, columns } = data
   const [rowsPerPage, setRowsPerPage] = useState(all ? -1 : 10)
   const [orderBy, setOrderBy] = useState('status')
@@ -43,10 +43,16 @@ export default function DataTable({ data, noPagination, all }) {
     setPage(0)
   }
 
-  const sortSliceData = (rows) =>
-    stableSort(rows, getComparator(order, orderBy))
+  const sortSliceData = (rows) => {
+    if (noPagination && isScroll) {
+      return stableSort(rows, getComparator(order, orderBy)).map((row, index) => (
+        <Row key={index} index={index} row={row} ids={ids} />
+      ))
+    }
+    return stableSort(rows, getComparator(order, orderBy))
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       .map((row, index) => <Row key={index} index={index} row={row} ids={ids} />)
+  }
 
   return (
     <div className='data-table'>

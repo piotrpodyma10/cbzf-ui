@@ -26,7 +26,6 @@ export const ApproveProductModal = ({ open, handleClose, product, fetchPendingPr
     setNutritions([])
   }
 
-  console.log('nutritions', nutritions)
   const isDisabled = nutritions.length > 0 ? false : true
 
   const approve = () => {

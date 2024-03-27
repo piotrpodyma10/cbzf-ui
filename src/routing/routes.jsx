@@ -10,6 +10,7 @@ import Rate from '../components/views/rate/Rate'
 import Settings from '../components/views/settings/Settings'
 import { ADMIN, EXPERT, SUPER_EXPERT, allRoles } from '../utils/userUtils'
 import { ProductDetails } from '../components/views/productDetails/ProductDetails'
+import { ProductNutritions } from '../components/views/productNutritions/ProductNutritions'
 
 export const routes = [
   {
@@ -45,6 +46,12 @@ export const routes = [
   {
     path: '/product/:id',
     component: <ProductDetails />,
+    index: 2,
+    access: allRoles,
+  },
+  {
+    path: '/nutritions/:id',
+    component: <ProductNutritions />,
     index: 2,
     access: allRoles,
   },

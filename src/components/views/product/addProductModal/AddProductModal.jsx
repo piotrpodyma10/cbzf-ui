@@ -136,7 +136,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
       try {
         const response = await calculateIndexes(nutritionfields)
         const data = response.data
-        console.log('DATA', response)
         if (isNotEmpty(data)) {
           setIndexes(data)
           await handleNutritionUpdate('Omega-3', 'Total', 'indeks', data.indeksO, false)
@@ -505,7 +504,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             <CustomAccordion title={'Omega-3'}>
               {OmegaData.map((f, key) => {
                 const isTotal = f.nazwa === 'Total'
-                console.log('OKWKD', f)
                 return (
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
