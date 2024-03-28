@@ -12,11 +12,12 @@ import { auth } from '../../../../features/redux/auth/authSlice'
 import './ProductPanel.scss'
 
 export const ProductPanel = ({ isConsumer }) => {
-  const { isProvider, user } = useSelector(auth)
+  const { isProvider, isExpert, isSuperExpert, isAdmin, user } = useSelector(auth)
   const [products, setProducts] = useState([])
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const showNutritions = isProvider || isExpert || isSuperExpert || isAdmin
 
   const toDetailsPage = (id) => {
     const path = location.pathname
@@ -44,17 +45,19 @@ export const ProductPanel = ({ isConsumer }) => {
         className='details-page'
         onClick={() => toDetailsPage(id)}
       />
-      <div className='wartosci-odz'>
-        <CustomButton
-          text={
-            <div>
-              Wartości odżywcze <ArrowForwardIosIcon />
-            </div>
-          }
-          className='details-page'
-          onClick={() => toNutritionsPage(id)}
-        />
-      </div>
+      {showNutritions && (
+        <div className='wartosci-odz'>
+          <CustomButton
+            text={
+              <div>
+                Wartości odżywcze <ArrowForwardIosIcon />
+              </div>
+            }
+            className='details-page'
+            onClick={() => toNutritionsPage(id)}
+          />
+        </div>
+      )}
     </div>
   )
 

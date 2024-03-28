@@ -4,11 +4,13 @@ import { getProductNutrition, getProducts } from '../../../features/services/pro
 import { useParams } from 'react-router-dom'
 import DataTable from '../../common/dataTable/DataTable'
 import './ProductNutritions.scss'
+import { CustomAccordion } from '../../common/customAccordion/CustomAccordion'
 
 export const ProductNutritions = () => {
   const { id } = useParams()
   const [product, setProduct] = useState([])
   const [nutrition, setNutrition] = useState([])
+  const [extraNutrition, setExtraNutrition] = useState([])
 
   const productName = product?.nazwaProdukt
   const porcja = nutrition?.[0]?.porcja
@@ -24,56 +26,35 @@ export const ProductNutritions = () => {
     })
     getProductNutrition(id).then((response) => {
       const data = response.data
+
       if (data) {
-        setNutrition(data)
+        const index = data.findIndex((obj) => obj.nazwa === 'EPA+DHA' && obj.nazwaGrupy === 'Omega-3')
+        const basic = data.slice(0, index + 1)
+        const extra = data.slice(index + 1)
+        setNutrition(basic)
+        setExtraNutrition(extra)
       }
     })
   }, [])
 
-  const wartosciOdz = [
-    { avgLife: 'Wartość energetyczna', '100ml': '151 kJ\n 36 kcal', '75ml': '114 kJ\n 27 kcal', rws: '1%' },
-    {
-      avgLife: 'Tłuszcz\n w tym kwasy tłuszczowe nasycone',
-      '100ml': '0,9g\n 0,6g',
-      '75ml': '0,7g\n 0,5g',
-      rws: '1%\n 3%',
-    },
-    { avgLife: 'Węglowodany w tym cukry', '100ml': '5,9g\n 1,3g', '75ml': '4,4g\n 1,0g', rws: '2%\n 1%' },
-    { avgLife: 'Błonnik', '100ml': '0,2g', '75ml': '0,2g', rws: '-' },
-    { avgLife: 'Białko', '100ml': '0,9g', '75ml': '0,7g', rws: '1%' },
-    { avgLife: 'Sól', '100ml': '1,3g', '75ml': '1,0g', rws: '17%' },
+  const columns = [
+    { label: 'Nazwa grupy', id: 'nazwaGrupy' },
+    { label: 'Nazwa', id: 'nazwa' },
+    { label: `Zawartość /100 g/ml)`, id: 'zawartosc' },
+    { label: '%RWS*\n /100', id: 'procentRws' },
+    { label: 'Zawartość /porcja', id: 'zawartoscPorcja' },
+    { label: '%RWS*\n /porcja', id: 'procentRwsPorcja' },
+    { label: 'Indeks', id: 'indeks' },
   ]
 
-  // const wartosciOdz = [
-  //   { avgLife: 'Wartość energetyczna', '100ml': '151 kJ\n 36 kcal', '75ml': '114 kJ\n 27 kcal', rws: '1%' },
-  //   {
-  //     avgLife: 'Tłuszcz\n w tym kwasy tłuszczowe nasycone',
-  //     '100ml': '0,9g\n 0,6g',
-  //     '75ml': '0,7g\n 0,5g',
-  //     rws: '1%\n 3%',
-  //   },
-  //   { avgLife: 'Węglowodany w tym cukry', '100ml': '5,9g\n 1,3g', '75ml': '4,4g\n 1,0g', rws: '2%\n 1%' },
-  //   { avgLife: 'Błonnik', '100ml': '0,2g', '75ml': '0,2g', rws: '-' },
-  //   { avgLife: 'Białko', '100ml': '0,9g', '75ml': '0,7g', rws: '1%' },
-  //   { avgLife: 'Sól', '100ml': '1,3g', '75ml': '1,0g', rws: '17%' },
-  // ]
-
-  const productNutritions = {
+  const basicProductNutritions = {
     rows: nutrition,
-    columns: [
-      { label: 'Nazwa grupy', id: 'nazwaGrupy' },
-      { label: 'Nazwa', id: 'nazwa' },
-      { label: `Wartość liczbowa (${unitPorcja}/100)`, id: 'zawartosc' },
-      { label: '%RWS*\n /100', id: 'procentRws' },
-      { label: 'Wartość /porcja', id: 'zawartoscPorcja' },
-      { label: '%RWS*\n /porcja', id: 'procentRwsPorcja' },
-    ],
-    // columns: [
-    //   { label: 'Średnia wartość odżywcza po przyrządzeniu', id: 'avgLife' },
-    //   { label: 'W\n 100 ml', id: '100ml' },
-    //   { label: 'W\n 1 porcji 75 ml', id: '75ml' },
-    //   { label: '%RWS*\n w 1 porcji', id: 'rws' },
-    // ],
+    columns: columns,
+  }
+
+  const extraProductNutritions = {
+    rows: extraNutrition,
+    columns: columns,
   }
 
   return (
@@ -91,7 +72,12 @@ export const ProductNutritions = () => {
       </div>
       <div className='product-values'></div>
       <div className='nutritions-table'>
-        <DataTable data={productNutritions} noPagination={true} isScroll={true} />
+        <CustomAccordion title={'Podstawowe'}>
+          <DataTable data={basicProductNutritions} noPagination={true} isScroll={true} />
+        </CustomAccordion>
+        <CustomAccordion title={'Dodatkowe'}>
+          <DataTable data={extraProductNutritions} noPagination={true} isScroll={true} />
+        </CustomAccordion>
       </div>
     </Card>
   )

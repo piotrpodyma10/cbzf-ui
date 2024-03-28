@@ -72,6 +72,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const [nutritionfields, setNutritionFields] = useState(allNutritions)
   const [indexes, setIndexes] = useState({})
   const [porcja, setPorcja] = useState(0)
+  const [par2, setPar2] = useState(null)
 
   const allFields = [
     { field: 'kodEan', type: 'string', label: 'Kod EAN', required: true },
@@ -82,8 +83,9 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     { field: 'idKraj', type: 'number', label: 'Id Kraj' },
   ]
 
-  const requiredFields = ['par2', 'kodEan', 'nazwaProdukt', 'skladnikIlosc']
-  const isDisabled = !requiredFields.every((field) => Object.keys(fields).includes(field))
+  const requiredFields = ['kodEan', 'nazwaProdukt', 'skladnikIlosc']
+  const isDisabled =
+    par2 !== null && requiredFields.every((field) => Object.keys(fields).includes(field)) ? false : true
 
   useEffect(() => {
     if (isNotEmpty(product)) {
@@ -152,6 +154,9 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const close = () => {
     setFields({})
     setNutritionFields(allNutritions)
+    setIndexes({})
+    setPorcja(0)
+    setPar2(null)
     handleClose()
   }
 
@@ -165,6 +170,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
         const allPreparedNutritions = nutritionfields.map((nutritionField, index) => ({
           idProdukt: productId,
           idNutrient: index + 1,
+          par2Nutrition: par2 ? 'ml' : 'g',
           porcja: porcja,
           ...nutritionField,
         }))
@@ -212,6 +218,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
 
   const allIndexes = [generalata, fatData, carbioData, vitaminsData, mineralsData]
   const canCalculate = !(!isProvider && nutritionfields.length > 0)
+
+  console.log('Fields', par2)
 
   return (
     <CustomModal className='add-product-modal' open={open} handleClose={close}>
@@ -287,12 +295,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
               <div>
                 <div>PAR 2*</div>
                 <span>g</span>
-                <CustomSwitch
-                  value={fields.par2}
-                  checked={fields.par2}
-                  required={true}
-                  onChange={(e, v) => handleFields({ target: { value: v } }, { field: 'par2' }, setFields, fields)}
-                />
+                <CustomSwitch value={par2} checked={par2} required={true} onChange={(e, v) => setPar2(v)} />
                 <span>ml</span>
               </div>
               <CustomTextField

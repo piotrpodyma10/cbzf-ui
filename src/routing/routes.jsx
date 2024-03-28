@@ -61,7 +61,7 @@ export const routes = [
     icon: <StarRateIcon className='route-icon bigger-icon' />,
     component: <Rate />,
     index: 3,
-    access: [EXPERT, ADMIN],
+    access: [EXPERT, SUPER_EXPERT, ADMIN],
   },
   {
     title: 'Ustawienia',

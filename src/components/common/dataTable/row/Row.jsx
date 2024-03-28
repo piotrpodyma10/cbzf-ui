@@ -15,6 +15,10 @@ function Row({ ids, row }) {
           }
         }
 
+        if (row?.[id] === 0 && row?.indeks === 0) {
+          value = 0
+        }
+
         if (typeof value === 'string' && value?.includes('\n')) {
           const splitValue = value.split('\n')
           value = (

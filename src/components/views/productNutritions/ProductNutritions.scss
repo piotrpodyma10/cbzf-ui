@@ -4,7 +4,6 @@
 
     .title {
       padding: 0;
-      // font-size: 14px;
     }
   }
 
@@ -14,11 +13,14 @@
     font-weight: bold;
   }
   margin-top: 20px;
-  // width: 560px;
 
   .nutritions-table {
-    // width: 560px;
     overflow-x: auto;
+
+    .title {
+      font-size: 14px;
+      padding: 10px;
+    }
 
     td,
     th {
