@@ -14,7 +14,7 @@ export const ProductNutritions = () => {
 
   const productName = product?.nazwaProdukt
   const porcja = nutrition?.[0]?.porcja
-  const unitPorcja = `${porcja} ${nutrition?.[0]?.par1Nutrition === '1' ? 'g' : 'ml'}`
+  const unitPorcja = `${porcja} ${nutrition?.[0]?.par2Nutrition}`
 
   useEffect(() => {
     getProducts('', { productId: id }).then((response) => {

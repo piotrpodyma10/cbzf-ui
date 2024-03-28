@@ -17,7 +17,7 @@ export const ProductPanel = ({ isConsumer }) => {
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
-  const showNutritions = isProvider || isExpert || isSuperExpert || isAdmin
+  const showNutritions = true
 
   const toDetailsPage = (id) => {
     const path = location.pathname

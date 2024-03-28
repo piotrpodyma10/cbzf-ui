@@ -53,7 +53,7 @@ export const routes = [
     path: '/nutritions/:id',
     component: <ProductNutritions />,
     index: 2,
-    access: allRoles,
+    access: 'ALL',
   },
   {
     title: 'Ocena',
