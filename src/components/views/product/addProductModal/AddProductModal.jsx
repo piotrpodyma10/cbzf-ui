@@ -167,13 +167,34 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     addPendingProduct(allFields)
       .then((response) => {
         const productId = response.data
-        const allPreparedNutritions = nutritionfields.map((nutritionField, index) => ({
-          idProdukt: productId,
-          idNutrient: index + 1,
-          par2Nutrition: par2 ? 'ml' : 'g',
-          porcja: porcja,
-          ...nutritionField,
-        }))
+        const allPreparedNutritions = nutritionfields.map((nutritionField, index) => {
+          let idNutrient = index + 1
+
+          if (nutritionField.nazwaGrupy === 'Białko') {
+            idNutrient = 13
+          }
+
+          if (nutritionField.nazwaGrupy === 'Sól') {
+            idNutrient = 14
+          }
+
+          if (nutritionField.nazwaGrupy === 'Tłuszcz' && nutritionField.nazwa === 'Total') {
+            idNutrient = 2
+          }
+
+          if (nutritionField.nazwaGrupy === 'Tłuszcz' && nutritionField.nazwa === 'Kwasy nasycone') {
+            idNutrient = 3
+          }
+
+          return {
+            idProdukt: productId,
+            idNutrient: idNutrient,
+            par2Nutrition: par2 ? 'ml' : 'g',
+            porcja: porcja,
+            ...nutritionField,
+          }
+        })
+
         addPendingNutrition(allPreparedNutritions)
           .then((nutrResponse) => {
             if (nutrResponse.status === 200) {
