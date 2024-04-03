@@ -3,8 +3,8 @@ import Card from '../../common/card/Card'
 import { getProductNutrition, getProducts } from '../../../features/services/product/product.service'
 import { useParams } from 'react-router-dom'
 import DataTable from '../../common/dataTable/DataTable'
-import './ProductNutritions.scss'
 import { CustomAccordion } from '../../common/customAccordion/CustomAccordion'
+import './ProductNutritions.scss'
 
 export const ProductNutritions = () => {
   const { id } = useParams()
@@ -40,6 +40,7 @@ export const ProductNutritions = () => {
   const columns = [
     { label: 'Nazwa grupy', id: 'nazwaGrupy' },
     { label: 'Nazwa', id: 'nazwa' },
+    { label: 'Jednostka', id: 'jednostka' },
     { label: `Zawartość /100 g/ml)`, id: 'zawartosc' },
     { label: '%RWS*\n /100', id: 'procentRws' },
     { label: 'Zawartość /porcja', id: 'zawartoscPorcja' },
