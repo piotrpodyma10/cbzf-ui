@@ -71,7 +71,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
 
   const [nutritionfields, setNutritionFields] = useState(allNutritions)
   const [indexes, setIndexes] = useState({})
-  const [porcja, setPorcja] = useState(0)
+  const [porcja, setPorcja] = useState(100)
   const [par2, setPar2] = useState(null)
 
   const allFields = [
@@ -314,7 +314,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
           <CustomAccordion title={'Wartość odżywcza'}>
             <CustomAccordion title={'Ogólne wartości'}>
               <div>
-                <div>PAR 2*</div>
+                <div>W przeliczeniu na*</div>
                 <span>g</span>
                 <CustomSwitch value={par2} checked={par2} required={true} onChange={(e, v) => setPar2(v)} />
                 <span>ml</span>
