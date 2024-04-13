@@ -335,7 +335,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       size='small'
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
@@ -346,7 +345,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
                       size='small'
                       className='rws'
-                      type={'number'}
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       label={'Procent RWS'}
@@ -374,7 +372,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       size='small'
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
@@ -385,7 +382,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
                       size='small'
                       className='rws'
-                      type={'number'}
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       label={'Procent RWS'}
@@ -412,7 +408,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       size='small'
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
@@ -425,7 +420,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -452,7 +446,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       size='small'
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
@@ -465,7 +458,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -492,7 +484,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -505,7 +496,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -532,7 +522,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -545,7 +534,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -571,7 +559,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -584,7 +571,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -609,22 +595,22 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
                       label={f.nazwa}
                     />
                     <span className='nutrition-unit'>{f.jednostka}</span>
-                    <CustomTextField
-                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
-                      size='small'
-                      className='rws'
-                      value={f.procentRws}
-                      InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
-                      label={'Procent RWS'}
-                    />
+                    {f.nazwa !== 'ORAC' && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
+                        size='small'
+                        className='rws'
+                        value={f.procentRws}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Procent RWS'}
+                      />
+                    )}
                     {!isProvider && (
                       <CustomTextField
                         onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
@@ -647,7 +633,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -660,7 +645,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -685,7 +669,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -698,7 +681,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -723,7 +705,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -736,7 +717,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -761,7 +741,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -774,7 +753,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -799,7 +777,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -812,7 +789,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -837,7 +813,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -850,7 +825,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -875,7 +849,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -888,7 +861,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -913,7 +885,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -926,7 +897,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -951,7 +921,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -964,7 +933,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (
@@ -989,7 +957,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                   <div key={key} className='nutrition-field'>
                     <CustomTextField
                       onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      type={'number'}
                       value={f.zawartosc}
                       InputLabelProps={editMode ? { shrink: true } : {}}
                       size='small'
@@ -1002,7 +969,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       className='rws'
                       value={f.procentRws}
                       InputLabelProps={editMode ? { shrink: true } : {}}
-                      type={'number'}
                       label={'Procent RWS'}
                     />
                     {!isProvider && (

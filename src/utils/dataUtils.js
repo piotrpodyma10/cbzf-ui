@@ -529,8 +529,7 @@ export const productNutritionAntyoksydantyFields = [
     nazwaGrupy: 'Antyoksydanty',
     nazwa: 'ORAC',
     zawartosc: 0,
-
-    jednostka: 'mg',
+    jednostka: 'j.m.',
     procentRws: 0,
     indeks: null,
   },
@@ -693,42 +692,6 @@ export const productNutritionEnzymyFields = [
 ]
 
 export const productNutritionKwasyOrgFields = [
-  {
-    nazwaGrupy: 'Kwasy Organiczne',
-    nazwa: 'Kreatyna',
-    zawartosc: 0,
-
-    jednostka: 'mg',
-    procentRws: 0,
-    indeks: null,
-  },
-  {
-    nazwaGrupy: 'Kwasy Organiczne',
-    nazwa: 'Kreatyna',
-    zawartosc: 0,
-
-    jednostka: 'mg',
-    procentRws: 0,
-    indeks: null,
-  },
-  {
-    nazwaGrupy: 'Kwasy Organiczne',
-    nazwa: 'Kreatyna',
-    zawartosc: 0,
-
-    jednostka: 'mg',
-    procentRws: 0,
-    indeks: null,
-  },
-  {
-    nazwaGrupy: 'Kwasy Organiczne',
-    nazwa: 'Kreatyna',
-    zawartosc: 0,
-
-    jednostka: 'mg',
-    procentRws: 0,
-    indeks: null,
-  },
   {
     nazwaGrupy: 'Kwasy Organiczne',
     nazwa: 'Kreatyna',
