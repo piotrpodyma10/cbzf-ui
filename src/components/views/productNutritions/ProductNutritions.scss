@@ -1,8 +1,20 @@
 .product-nutritions {
+  width: 1000px;
+
   .product-details {
     padding: 0 20px;
 
     .title {
+      padding: 0;
+    }
+  }
+  .data-table {
+    .header-cell,
+    .table-cell {
+      padding: 10px 0;
+    }
+
+    .header-cell {
       padding: 0;
     }
   }

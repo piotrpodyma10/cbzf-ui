@@ -13,7 +13,6 @@ import TablePagination from '@mui/material/TablePagination'
 import Pagination from './pagination/Pagination'
 import Box from '@mui/material/Box'
 import Row from './row/Row'
-import Filters from '../filters/Filters'
 import './DataTable.scss'
 
 export default function DataTable({ data, noPagination, all, isScroll = false }) {
