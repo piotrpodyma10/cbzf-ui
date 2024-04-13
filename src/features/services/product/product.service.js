@@ -3,12 +3,13 @@ import { config } from '../../../utils/config'
 import { isNotEmpty } from '../../../utils/userUtils'
 
 export const getProducts = (providerId = '', filters = {}) => {
-  const { idKraj = '', idDostawca = '', name = '', indeksT = '', productId = '' } = filters
+  const { ingredients = '', nutritions = '', name = '', indeksT = '', productId = '' } = filters
   return axios.get(`${config.endpoints.product}`, {
     params: {
-      idDostawca: providerId || idDostawca,
+      idDostawca: providerId,
+      nutritions: nutritions,
       idProdukt: productId,
-      idKraj: idKraj,
+      ingredients: ingredients,
       nazwaProdukt: name,
       indeksT: indeksT,
     },

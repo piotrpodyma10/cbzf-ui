@@ -249,7 +249,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'A',
+    nazwa: 'Witamina A',
     zawartosc: 0,
 
     jednostka: 'mcg',
@@ -258,7 +258,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B1',
+    nazwa: 'Witamina B1',
     zawartosc: 0,
 
     jednostka: 'mg',
@@ -267,7 +267,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B2',
+    nazwa: 'Witamina B2',
     zawartosc: 0,
 
     jednostka: 'mg',
@@ -276,7 +276,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B3',
+    nazwa: 'Witamina B3',
     zawartosc: 0,
 
     jednostka: 'mg',
@@ -285,7 +285,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B5',
+    nazwa: 'Witamina B5',
     zawartosc: 0,
 
     jednostka: 'mg',
@@ -294,7 +294,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B6',
+    nazwa: 'Witamina B6',
     zawartosc: 0,
 
     jednostka: 'mg',
@@ -303,7 +303,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B7',
+    nazwa: 'Witamina B7',
     zawartosc: 0,
 
     jednostka: 'mcg',
@@ -312,7 +312,7 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B9',
+    nazwa: 'Witamina B9',
     zawartosc: 0,
 
     jednostka: 'mcg',
@@ -321,27 +321,27 @@ export const productNutritionVitaminFields = [
   },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'B12',
+    nazwa: 'Witamina B12',
     zawartosc: 0,
 
     jednostka: 'mcg',
     procentRws: 0,
     indeks: null,
   },
-  { nazwaGrupy: 'Witaminy', nazwa: 'C', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'Witamina C', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'D',
+    nazwa: 'Witamina D',
     zawartosc: 0,
 
     jednostka: 'mcg',
     procentRws: 0,
     indeks: null,
   },
-  { nazwaGrupy: 'Witaminy', nazwa: 'E', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Witaminy', nazwa: 'Witamina E', zawartosc: 0, jednostka: 'mg', procentRws: 0, indeks: null },
   {
     nazwaGrupy: 'Witaminy',
-    nazwa: 'K',
+    nazwa: 'Witamina K',
     zawartosc: 0,
 
     jednostka: 'mcg',
@@ -984,9 +984,8 @@ export const rateProductFields = [
 ]
 
 export const searchFilters = [
-  { field: 'idKraj', type: 'number', label: 'Kraj' },
-  { field: 'idDostawca', type: 'number', label: 'Dostawca' },
   { field: 'name', type: 'string', label: 'Nazwa Produktu' },
-  // { field: 'kodEAN', type: 'string', label: 'Etykieta Cyfrowa Produktu' },
+  { field: 'ingredients', type: 'string', label: 'Składniki' },
+  { field: 'nutritions', type: 'string', label: 'Wartość odżywcza' },
   { field: 'indeksT', type: 'string', label: 'Indeks F-FOOD' },
 ]
