@@ -311,7 +311,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
               )
             })}
           </CustomAccordion>
-          <CustomAccordion title={'Wartości odżywcze'}>
+          <CustomAccordion title={'Wartość odżywcza'}>
             <CustomAccordion title={'Ogólne wartości'}>
               <div>
                 <div>PAR 2*</div>

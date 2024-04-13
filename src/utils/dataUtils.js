@@ -78,8 +78,6 @@ export const praductIndexFields = [
 ]
 
 export const productCategoryFields = [
-  { field: 'liczbaKat', type: 'number', label: 'Liczba Kategorii' },
-  { field: 'kategoria', type: 'string', label: 'Kategoria' },
   { field: 'kat1', type: 'string', label: 'Kategoria 1' },
   { field: 'kat2', type: 'string', label: 'Kategoria 2' },
   { field: 'kat3', type: 'string', label: 'Kategoria 3' },
