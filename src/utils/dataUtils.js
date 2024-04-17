@@ -8,14 +8,14 @@ export const newProviderColumns = [
   { id: 'nipDostawca', type: 'string', label: 'NIP', required: true },
   { id: 'rmsdDostawca', type: 'number', label: 'RMS', required: true, max: 3 },
   { id: 'kontaktDostawca', type: 'string', label: 'Kontakt', required: true },
-  { id: 'dlugKodEan1', type: 'number', label: 'Dług Kod EAN 1', required: true },
   { id: 'kodProdEan1', type: 'string', label: 'Kod EAN 1', required: true },
-  { id: 'dlugKodEan2', type: 'number', label: 'Dług Kod EAN 2' },
   { id: 'kodProdEan2', type: 'string', label: 'Kod EAN 2' },
-  { id: 'dlugKodEan3', type: 'number', label: 'Dług Kod EAN 3' },
   { id: 'kodProdEan3', type: 'string', label: 'Kod EAN 3' },
-  { id: 'dlugKodEan4', type: 'number', label: 'Dług Kod EAN 4' },
   { id: 'kodProdEan4', type: 'string', label: 'Kod EAN 4' },
+  { id: 'kodProdEan5', type: 'string', label: 'Kod EAN 5' },
+  { id: 'kodProdEan6', type: 'string', label: 'Kod EAN 6' },
+  { id: 'kodProdEan7', type: 'string', label: 'Kod EAN 7' },
+  { id: 'kodProdEan8', type: 'string', label: 'Kod EAN 8' },
 ]
 export const providerColumns = [{ label: 'ID', id: 'idDostawca', type: 'number' }, ...newProviderColumns]
 
