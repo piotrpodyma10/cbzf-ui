@@ -3,25 +3,25 @@ import CustomModal from '../../../common/modal/CustomModal'
 import { Button } from '@mui/material'
 import CustomTextField from '../../../common/customTextField/CustomTextField'
 import { toast } from 'react-toastify'
-import './AddProviderModal.scss'
 import { CustomSelect } from '../../../common/customSelect/CustomSelect'
 import { addProvider } from '../../../../features/services/provider/provider.service'
 import { handleFields } from '../../../../utils/fieldsUtils'
+import './AddProviderModal.scss'
 
 export default function AddProviderModal({ open, handleClose }) {
   const [fields, setFields] = useState({})
 
   const allFields = [
-    { field: 'pi', type: 'string', label: 'Rodzaj dostawcy' },
-    { field: 'ileKodowEan', type: 'number', label: 'Ile Kodów EAN' },
-    { field: 'par1', type: 'number', label: 'PAR 1' },
-    { field: 'nazwaDostawca', type: 'string', label: 'Nazwa Dostawcy' },
-    { field: 'adresDostawca', type: 'string', label: 'Adres' },
-    { field: 'idKraj', type: 'number', label: 'Id Kraj' },
-    { field: 'nipDostawca', type: 'string', label: 'NIP' },
-    { field: 'rmsdDostawca', type: 'number', label: 'RMS' },
-    { field: 'kontaktDostawca', type: 'string', label: 'Kontakt' },
-    { field: 'kodProdEan1', type: 'string', label: 'Kod EAN 1' },
+    { field: 'pi', type: 'string', label: 'Rodzaj dostawcy', isRequired: true },
+    { field: 'ileKodowEan', type: 'number', label: 'Ile Kodów EAN', isRequired: true },
+    { field: 'par1', type: 'number', label: 'PAR 1', isRequired: true },
+    { field: 'nazwaDostawca', type: 'string', label: 'Nazwa Dostawcy', isRequired: true },
+    { field: 'adresDostawca', type: 'string', label: 'Adres', isRequired: true },
+    { field: 'idKraj', type: 'number', label: 'Id Kraj', isRequired: true },
+    { field: 'nipDostawca', type: 'string', label: 'NIP', isRequired: true },
+    { field: 'rmsdDostawca', type: 'number', label: 'RMS', isRequired: true },
+    { field: 'kontaktDostawca', type: 'string', label: 'Kontakt', isRequired: true },
+    { field: 'kodProdEan1', type: 'string', label: 'Kod EAN 1', isRequired: true },
     { field: 'kodProdEan2', type: 'string', label: 'Kod EAN 2' },
     { field: 'kodProdEan3', type: 'string', label: 'Kod EAN 3' },
     { field: 'kodProdEan4', type: 'string', label: 'Kod EAN 4' },
@@ -29,14 +29,6 @@ export default function AddProviderModal({ open, handleClose }) {
     { field: 'kodProdEan6', type: 'string', label: 'Kod EAN 6' },
     { field: 'kodProdEan7', type: 'string', label: 'Kod EAN 7' },
     { field: 'kodProdEan8', type: 'string', label: 'Kod EAN 8' },
-    // { field: 'dlugKodEan1', type: 'number', label: 'Dług Kod EAN 1' },
-    // { field: 'kodProdEan1', type: 'string', label: 'Kod EAN 1' },
-    // { field: 'dlugKodEan2', type: 'number', label: 'Dług Kod EAN 2' },
-    // { field: 'kodProdEan2', type: 'string', label: 'Kod EAN 2' },
-    // { field: 'dlugKodEan3', type: 'number', label: 'Dług Kod EAN 3' },
-    // { field: 'kodProdEan3', type: 'string', label: 'Kod EAN 3' },
-    // { field: 'dlugKodEan4', type: 'number', label: 'Dług Kod EAN 4' },
-    // { field: 'kodProdEan4', type: 'string', label: 'Kod EAN 4' },
   ]
 
   const providerTypes = [
@@ -44,7 +36,16 @@ export default function AddProviderModal({ open, handleClose }) {
     { label: 'Producent', value: 'producent' },
   ]
 
-  const isDisabled = Object.keys(fields).length === allFields.length
+  const requiredFields = allFields.filter((field) => field.isRequired)
+  const isDisabled = requiredFields.some((field) => {
+    const value = fields[field.field]
+    return (
+      value === undefined ||
+      value === null ||
+      (typeof value === 'string' && value.trim() === '') ||
+      (typeof value === 'number' && isNaN(value))
+    )
+  })
 
   const close = () => {
     handleClose()
@@ -91,7 +92,7 @@ export default function AddProviderModal({ open, handleClose }) {
             </div>
           )
         })}
-        <Button disabled={!isDisabled} onClick={saveData} className='add-button'>
+        <Button disabled={isDisabled} onClick={saveData} className='add-button'>
           Dodaj
         </Button>
       </div>
