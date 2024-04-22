@@ -12,35 +12,35 @@ export const ProductIndexes = ({ product }) => {
       <div className='index-container'>
         <div>
           <div className='index'>
-            <span className='index-title'>Indeks E:</span>
+            <span className='index-title'>Indeks EN:</span>
             <div className='index-value'>{indeksE}</div>
           </div>
           <div className='index'>
-            <span className='index-title'>Indeks V:</span>
+            <span className='index-title'>Indeks VIT:</span>
             <div className='index-value'>{indeksV}</div>
           </div>
           <div className='index'>
-            <span className='index-title'>Indeks M:</span>
+            <span className='index-title'>Indeks MIN:</span>
             <div className='index-value'>{indeksM}</div>
           </div>
           <div className='index'>
-            <span className='index-title'>Indeks O:</span>
+            <span className='index-title'>Indeks OM3:</span>
             <div className='index-value'>{indeksO}</div>
           </div>
           <div className='index'>
-            <span className='index-title'>Indeks P:</span>
+            <span className='index-title'>Indeks PRT:</span>
             <div className='index-value'>{indeksP}</div>
           </div>
           <div className='index'>
-            <span className='index-title'>Indeks F:</span>
+            <span className='index-title'>Indeks FIB:</span>
             <div className='index-value'>{indeksF}</div>
           </div>
           <div className='index'>
-            <span className='index-title'>Indeks S:</span>
+            <span className='index-title'>Indeks SUM:</span>
             <div className='index-value'>{indeksS}</div>
           </div>
           <div className='index'>
-            <span className='index-title'>Indeks T:</span>
+            <span className='index-title'>Indeks FF:</span>
             <div className='index-value'>{indeksT}</div>
           </div>
         </div>

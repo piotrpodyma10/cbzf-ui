@@ -9,57 +9,12 @@ import './RateModal.scss'
 
 export const RateModal = ({ open, handleClose, product = {}, fetchProducts }) => {
   const [fields, setFields] = useState(rateProductFields)
-
-  const noIngredients = [
-    {
-      text: 'Bez glutenu',
-      id: 1,
-    },
-    {
-      text: 'O bardzo niskiej zawartości glutenu',
-      id: 2,
-    },
-    {
-      text: 'Bez beta kazeiny A1',
-      id: 3,
-    },
-    {
-      text: 'Bez mleka krowiego i produktów pochodnych',
-      id: 4,
-    },
-    {
-      text: 'Bez laktozy',
-      id: 5,
-    },
-    {
-      text: 'Wegański (bez produktów zwierzęcych',
-      id: 6,
-    },
-  ]
-
-  const noExtras = [
-    {
-      text: 'Bez barwników',
-      id: 7,
-    },
-    {
-      text: 'Bez wzmacniaczy smaku',
-      id: 8,
-    },
-    {
-      text: 'Bez azotanów',
-      id: 9,
-    },
-    {
-      text: 'Bez dodatków do żywności',
-      id: 10,
-    },
-    {
-      text: 'Bez aromatów',
-      id: 11,
-    },
-  ]
-  const alergens = [{ text: 'Gluten', id: 12 }]
+  const certificates = rateProductFields.filter((field) => field.nazwaGrupa === 'Posiadane Certyfikaty')
+  const noIngredients = rateProductFields.filter((field) => field.nazwaGrupa === 'Parametry bez składników')
+  const noExtra = rateProductFields.filter((field) => field.nazwaGrupa === 'Bez dodatków do żywności')
+  const alergens = rateProductFields.filter((field) => field.nazwaGrupa === 'Alegreny (może zawierać)')
+  const specific = rateProductFields.filter((field) => field.nazwaGrupa === 'Specyficzne cechy')
+  const technology = rateProductFields.filter((field) => field.nazwaGrupa === 'Zastosowane procesy technologiczne')
 
   useEffect(() => {
     if (fields.length > 0) {
@@ -96,21 +51,30 @@ export const RateModal = ({ open, handleClose, product = {}, fetchProducts }) =>
     <CustomModal className='rate-modal' open={open} handleClose={handleClose}>
       <div className='container'>
         <div className='main-title'>Dodaj oceny do produktu {product.nazwaProdukt}</div>
-        <div className='title'>Parametry bez składników</div>
-        {noIngredients.map((ingredient) => {
+        <div className='title'>Posiadane Certyfikaty</div>
+        {certificates.map((ingredient) => {
           return (
             <div className='parameter-container'>
-              <div className='parameter'>{ingredient.text}</div>
-              <CustomSwitch onChange={(e, v) => handleUpdate(ingredient.id, v)} />
+              <div className='parameter'>{ingredient.nazwaPar}</div>
+              <CustomSwitch onChange={(e, v) => handleUpdate(ingredient.idParametr, v)} />
             </div>
           )
         })}
-        <div className='title'>Parametry bez dodatków</div>
-        {noExtras.map((extra) => {
+        <div className='title'>Bez składników</div>
+        {noIngredients.map((extra) => {
           return (
             <div className='parameter-container'>
-              <div className='parameter'>{extra.text}</div>
-              <CustomSwitch onChange={(e, v) => handleUpdate(extra.id, v)} />
+              <div className='parameter'>{extra.nazwaPar}</div>
+              <CustomSwitch onChange={(e, v) => handleUpdate(extra.idParametr, v)} />
+            </div>
+          )
+        })}
+        <div className='title'>Bez dodatków do żywności</div>
+        {noExtra.map((extra) => {
+          return (
+            <div className='parameter-container'>
+              <div className='parameter'>{extra.nazwaPar}</div>
+              <CustomSwitch onChange={(e, v) => handleUpdate(extra.idParametr, v)} />
             </div>
           )
         })}
@@ -118,8 +82,26 @@ export const RateModal = ({ open, handleClose, product = {}, fetchProducts }) =>
         {alergens.map((alergen) => {
           return (
             <div className='parameter-container'>
-              <div className='parameter'>{alergen.text}</div>
-              <CustomSwitch onChange={(e, v) => handleUpdate(alergen.id, v)} />
+              <div className='parameter'>{alergen.nazwaPar}</div>
+              <CustomSwitch onChange={(e, v) => handleUpdate(alergen.idParametr, v)} />
+            </div>
+          )
+        })}
+        <div className='title'>Specyficzne Cechy</div>
+        {specific.map((alergen) => {
+          return (
+            <div className='parameter-container'>
+              <div className='parameter'>{alergen.nazwaPar}</div>
+              <CustomSwitch onChange={(e, v) => handleUpdate(alergen.idParametr, v)} />
+            </div>
+          )
+        })}
+        <div className='title'>Zastosowane procesy technologiczne</div>
+        {technology.map((alergen) => {
+          return (
+            <div className='parameter-container'>
+              <div className='parameter'>{alergen.nazwaPar}</div>
+              <CustomSwitch onChange={(e, v) => handleUpdate(alergen.idParametr, v)} />
             </div>
           )
         })}
