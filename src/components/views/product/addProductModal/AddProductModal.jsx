@@ -220,7 +220,10 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const fatData = nutritionfields.filter((field) => field.nazwaGrupy === 'Tłuszcz')
   const generalata = nutritionfields.filter(
     (field) =>
-      field.nazwaGrupy === 'Wartość Energetyczna' || field.nazwaGrupy === 'Białko' || field.nazwaGrupy === 'Sól'
+      field.nazwaGrupy === 'Wartość Energetyczna' ||
+      field.nazwaGrupy === 'Białko' ||
+      field.nazwaGrupy === 'Sól' ||
+      field.nazwaGrupy === 'Błonnik'
   )
   const OmegaData = nutritionfields.filter((field) => field.nazwaGrupy === 'Omega-3')
   const otherVitaminsData = nutritionfields.filter((field) => field.nazwaGrupy === 'Witaminy inne')
@@ -358,6 +361,120 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                 )
               })}
             </CustomAccordion>
+            <CustomAccordion title={'Tłuszcz'}>
+              {fatData.map((f, key) => {
+                return (
+                  <div key={key} className='nutrition-field'>
+                    <CustomTextField
+                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
+                      size='small'
+                      value={f.zawartosc}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
+                      label={f.nazwa}
+                    />
+                    <span className='nutrition-unit'>{f.jednostka}</span>
+                    <CustomTextField
+                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
+                      size='small'
+                      className='rws'
+                      value={f.procentRws}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
+                      label={'Procent RWS'}
+                    />
+                    {!isProvider && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
+                        size='small'
+                        className='index'
+                        maxNumber={3}
+                        type={'number'}
+                        value={f.indeks}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Indeks'}
+                      />
+                    )}
+                  </div>
+                )
+              })}
+            </CustomAccordion>
+            <CustomAccordion title={'Węglowodany'}>
+              {carbioData.map((f, key) => {
+                return (
+                  <div key={key} className='nutrition-field'>
+                    <CustomTextField
+                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
+                      size='small'
+                      value={f.zawartosc}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
+                      label={f.nazwa}
+                    />
+                    <span className='nutrition-unit'>{f.jednostka}</span>
+                    <CustomTextField
+                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
+                      size='small'
+                      className='rws'
+                      value={f.procentRws}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
+                      label={'Procent RWS'}
+                    />
+                    {!isProvider && (
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
+                        size='small'
+                        className='index'
+                        maxNumber={3}
+                        type={'number'}
+                        value={f.indeks}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Indeks'}
+                      />
+                    )}
+                  </div>
+                )
+              })}
+            </CustomAccordion>
+            <CustomAccordion title={'Błonnik'}>
+              {generalata.map((f, key) => {
+                const isBlonnik = f.nazwaGrupy === 'Błonnik'
+                return (
+                  isBlonnik && (
+                    <div key={key} className='nutrition-field'>
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
+                        size='small'
+                        value={f.zawartosc}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={f.nazwaGrupy}
+                      />
+                      <span className='nutrition-unit'>{f.jednostka}</span>
+                      <CustomTextField
+                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
+                        size='small'
+                        className='rws'
+                        value={f.procentRws}
+                        InputLabelProps={editMode ? { shrink: true } : {}}
+                        label={'Procent RWS'}
+                      />
+                      {!isProvider && (
+                        <CustomTextField
+                          onChange={(e) =>
+                            handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)
+                          }
+                          size='small'
+                          minNumber={0}
+                          maxNumber={3}
+                          className='index'
+                          type={'number'}
+                          value={f.indeks}
+                          InputLabelProps={editMode ? { shrink: true } : {}}
+                          label={'Indeks'}
+                        />
+                      )}
+                    </div>
+                  )
+                )
+              })}
+            </CustomAccordion>
             <CustomAccordion title={'Białko'}>
               {generalata.map((f, key) => {
                 const isBialko = f.nazwaGrupy === 'Białko'
@@ -439,78 +556,6 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                       )}
                     </div>
                   )
-                )
-              })}
-            </CustomAccordion>
-            <CustomAccordion title={'Tłuszcz'}>
-              {fatData.map((f, key) => {
-                return (
-                  <div key={key} className='nutrition-field'>
-                    <CustomTextField
-                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      size='small'
-                      value={f.zawartosc}
-                      InputLabelProps={editMode ? { shrink: true } : {}}
-                      label={f.nazwa}
-                    />
-                    <span className='nutrition-unit'>{f.jednostka}</span>
-                    <CustomTextField
-                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
-                      size='small'
-                      className='rws'
-                      value={f.procentRws}
-                      InputLabelProps={editMode ? { shrink: true } : {}}
-                      label={'Procent RWS'}
-                    />
-                    {!isProvider && (
-                      <CustomTextField
-                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
-                        size='small'
-                        className='index'
-                        maxNumber={3}
-                        type={'number'}
-                        value={f.indeks}
-                        InputLabelProps={editMode ? { shrink: true } : {}}
-                        label={'Indeks'}
-                      />
-                    )}
-                  </div>
-                )
-              })}
-            </CustomAccordion>
-            <CustomAccordion title={'Węglowodany'}>
-              {carbioData.map((f, key) => {
-                return (
-                  <div key={key} className='nutrition-field'>
-                    <CustomTextField
-                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'zawartosc', e.target.value)}
-                      size='small'
-                      value={f.zawartosc}
-                      InputLabelProps={editMode ? { shrink: true } : {}}
-                      label={f.nazwa}
-                    />
-                    <span className='nutrition-unit'>{f.jednostka}</span>
-                    <CustomTextField
-                      onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'procentRws', e.target.value)}
-                      size='small'
-                      className='rws'
-                      value={f.procentRws}
-                      InputLabelProps={editMode ? { shrink: true } : {}}
-                      label={'Procent RWS'}
-                    />
-                    {!isProvider && (
-                      <CustomTextField
-                        onChange={(e) => handleNutritionUpdate(f.nazwaGrupy, f.nazwa, 'indeks', e.target.valueAsNumber)}
-                        size='small'
-                        className='index'
-                        maxNumber={3}
-                        type={'number'}
-                        value={f.indeks}
-                        InputLabelProps={editMode ? { shrink: true } : {}}
-                        label={'Indeks'}
-                      />
-                    )}
-                  </div>
                 )
               })}
             </CustomAccordion>

@@ -109,7 +109,7 @@ export const productSquadFields = [
 export const productNutritionGeneralFields = [
   {
     nazwaGrupy: 'Wartość Energetyczna',
-    nazwa: '',
+    nazwa: 'Wartość Energetyczna',
     zawartosc: 0,
     jednostka: 'kcal',
     procentRws: null,
@@ -118,14 +118,23 @@ export const productNutritionGeneralFields = [
   },
   {
     nazwaGrupy: 'Białko',
-    nazwa: '',
+    nazwa: 'Białko',
     zawartosc: 0,
     jednostka: 'g',
     procentRws: 0,
     indeks: null,
     groupIndeks: 'indeksP',
   },
-  { nazwaGrupy: 'Sól', nazwa: '', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+  { nazwaGrupy: 'Sól', nazwa: 'Sól', zawartosc: 0, jednostka: 'g', procentRws: 0, indeks: null },
+  {
+    nazwaGrupy: 'Błonnik',
+    nazwa: 'Błonnik',
+    zawartosc: 0,
+    jednostka: 'g',
+    procentRws: 0,
+    indeks: null,
+    groupIndeks: 'indeksF',
+  },
 ]
 
 export const productNutritionFatFields = [
@@ -221,16 +230,6 @@ export const productNutritionCarboFields = [
     jednostka: 'g',
     procentRws: 0,
     indeks: null,
-  },
-  {
-    nazwaGrupy: 'Węglowodany',
-    nazwa: 'Błonnik',
-    zawartosc: 0,
-
-    jednostka: 'g',
-    procentRws: 0,
-    indeks: null,
-    groupIndeks: 'indeksF',
   },
 ]
 

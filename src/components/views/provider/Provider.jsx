@@ -9,12 +9,12 @@ import { PendingProviders } from './pendingProviders/PendingProviders'
 import './Provider.scss'
 
 function Provider() {
-  const { isAdmin } = useSelector(auth)
+  const { isAdmin, isSuperExpert } = useSelector(auth)
 
   const tabs = [
     { label: 'Panel', content: <ProviderPanel /> },
     { label: 'RAPORT', content: <ProviderReport /> },
-    isAdmin && { label: 'Do Akceptacji', content: <PendingProviders /> },
+    (isSuperExpert || isAdmin) && { label: 'Do Akceptacji', content: <PendingProviders /> },
   ]
 
   return (
