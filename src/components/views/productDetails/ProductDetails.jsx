@@ -134,7 +134,7 @@ export const ProductDetails = () => {
             </CustomAccordion>
           </Card>
           <div className='indexes-nutritions'>
-            <ProductIndexes product={indexes} />
+            <ProductIndexes product={indexes} nutrition={nutrition} />
             {/* <Card className='nutritions-card'>
               <div className='title'>Wartości odżywcze</div>
               <CustomAccordion title={'Ogólne'}>

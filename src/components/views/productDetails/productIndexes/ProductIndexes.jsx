@@ -1,10 +1,12 @@
 import React from 'react'
-import './ProductIndexes.scss'
 import Card from '../../../common/card/Card'
 import { getIndex } from '../../../../utils/productUtils'
+import './ProductIndexes.scss'
 
-export const ProductIndexes = ({ product }) => {
+export const ProductIndexes = ({ product, nutrition }) => {
   const { indeksE, indeksV, indeksM, indeksO, indeksP, indeksF, indeksS, indeksT } = product
+  const indexEN = nutrition?.filter((nutr) => nutr?.nazwaGrupy === 'Wartość Energetyczna')
+  const valueOfIndexEN = indexEN?.[0]?.zawartosc
 
   return (
     <Card className='product-indexes'>
@@ -14,6 +16,7 @@ export const ProductIndexes = ({ product }) => {
           <div className='index'>
             <span className='index-title'>Indeks EN:</span>
             <div className='index-value'>{indeksE}</div>
+            {getIndex(valueOfIndexEN, 'en')}
           </div>
           <div className='index'>
             <span className='index-title'>Indeks VIT:</span>
@@ -38,13 +41,14 @@ export const ProductIndexes = ({ product }) => {
           <div className='index'>
             <span className='index-title'>Indeks SUM:</span>
             <div className='index-value'>{indeksS}</div>
+            {getIndex(indeksS, 'ff')}
           </div>
           <div className='index'>
             <span className='index-title'>Indeks FF:</span>
             <div className='index-value'>{indeksT}</div>
+            {getIndex(indeksT, 'cl')}
           </div>
         </div>
-        {getIndex(indeksT)}
       </div>
     </Card>
   )
