@@ -88,7 +88,7 @@ export const ProductPanel = ({ isConsumer }) => {
       { label: 'Opis', id: 'opisProdukt' },
       { label: 'Waga', id: 'wagaProdukt' },
       { label: 'Opakowanie', id: 'opakowanie' },
-      { label: 'Kraj', id: 'idKraj' },
+      { label: 'Kraj', id: 'kraj' },
       { label: 'Akcja', id: 'action' },
     ],
   }

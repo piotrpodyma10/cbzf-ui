@@ -38,7 +38,7 @@ export const pendingProducts = [
   { label: 'Opis', id: 'opisProdukt' },
   { label: 'Waga', id: 'wagaProdukt' },
   { label: 'Opakowanie', id: 'opakowanie' },
-  { label: 'Kraj', id: 'idKraj' },
+  { label: 'Kraj', id: 'kraj' },
 ]
 
 export const pendingProductsActions = [...pendingProducts, { label: 'Akcja', id: 'action' }]
@@ -49,7 +49,7 @@ export const basicProductFields = [
   { field: 'opisProdukt', type: 'string', label: 'Opis' },
   { field: 'wagaProdukt', type: 'string', label: 'Waga' },
   { field: 'opakowanie', type: 'string', label: 'Opakowanie' },
-  { field: 'idKraj', type: 'number', label: 'Id Kraj' },
+  { field: 'kraj', type: 'string', label: 'Kraj' },
   { field: 'skladnik1', type: 'string', label: 'Składnik 1' },
   { field: 'skladnik2', type: 'string', label: 'Składnik 2' },
   { field: 'skladnik3', type: 'string', label: 'Składnik 3' },

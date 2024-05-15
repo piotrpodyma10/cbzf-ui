@@ -79,7 +79,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     { field: 'opisProdukt', type: 'string', label: 'Opis' },
     { field: 'wagaProdukt', type: 'string', label: 'Waga' },
     { field: 'opakowanie', type: 'string', label: 'Opakowanie' },
-    { field: 'idKraj', type: 'string', label: 'Kraj' },
+    { field: 'kraj', type: 'string', label: 'Kraj' },
   ]
 
   const requiredFields = ['kodEan', 'nazwaProdukt']

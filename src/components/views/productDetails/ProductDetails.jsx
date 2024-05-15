@@ -100,7 +100,7 @@ export const ProductDetails = () => {
 
   const productDescription = {
     kodEan: product.kodEan,
-    kraj: product.idKraj,
+    kraj: product.kraj,
     wagaProdukt: product.wagaProdukt,
     opakowanie: product.opakowanie,
   }
