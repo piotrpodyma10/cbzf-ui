@@ -93,16 +93,14 @@ export const ProductDetails = () => {
   const productParameters = {
     rows: rates,
     columns: [
-      { label: 'Parametr ID', id: 'idParametr' },
       { label: 'Grupa', id: 'nazwaGrupa' },
       { label: 'Parametr', id: 'nazwaPar' },
-      { label: 'Wartość', id: 'value' },
     ],
   }
 
   const productDescription = {
     kodEan: product.kodEan,
-    idKraj: product.idKraj,
+    kraj: product.idKraj,
     wagaProdukt: product.wagaProdukt,
     opakowanie: product.opakowanie,
   }

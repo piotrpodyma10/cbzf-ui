@@ -42,7 +42,7 @@ import { isNotEmpty } from '../../../../utils/userUtils'
 import './AddProductModal.scss'
 
 export const AddProductModal = ({ handleClose, open, product = {}, editMode = false, fetchPendingProducts }) => {
-  const { user, isProvider } = useSelector(auth)
+  const { user, isProvider, isSuperExpert, isAdmin } = useSelector(auth)
   const { supplier = {} } = user
   const { id = '' } = supplier
   const [fields, setFields] = useState({})
@@ -79,10 +79,11 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     { field: 'opisProdukt', type: 'string', label: 'Opis' },
     { field: 'wagaProdukt', type: 'string', label: 'Waga' },
     { field: 'opakowanie', type: 'string', label: 'Opakowanie' },
-    { field: 'idKraj', type: 'number', label: 'Id Kraj' },
+    { field: 'idKraj', type: 'string', label: 'Kraj' },
   ]
 
-  const requiredFields = ['kodEan', 'nazwaProdukt', 'skladnikIlosc']
+  const requiredFields = ['kodEan', 'nazwaProdukt']
+  const isSEorAdmin = isSuperExpert || isAdmin
   const isDisabled =
     par2 !== null && requiredFields.every((field) => Object.keys(fields).includes(field)) ? false : true
 
@@ -115,6 +116,12 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
       })
     }
   }, [product])
+
+  useEffect(() => {
+    if (isSEorAdmin) {
+      getCalculatedIndexes()
+    }
+  }, [isSuperExpert, isAdmin])
 
   const handleNutritionUpdate = (nazwaGrupy, nazwa, cell, newValue, total = true) => {
     if (cell === 'indeks' && newValue > 3 && total) {

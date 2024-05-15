@@ -11,7 +11,8 @@ import './ApproveProductModal.scss'
 
 export const ApproveProductModal = ({ open, handleClose, product, fetchPendingProducts }) => {
   const [nutritions, setNutritions] = useState([])
-  const { nazwaProdukt, kodEan, idProdukt } = product
+  const { nazwaProdukt, kodEan, idProdukt, idDostawca } = product
+
 
   useEffect(() => {
     if (idProdukt) {
@@ -63,6 +64,7 @@ export const ApproveProductModal = ({ open, handleClose, product, fetchPendingPr
       <div className='title'>Czy na pewno chcesz zatwierdzić ten produkt?</div>
       <div className='details'>Nazwa Produktu: {nazwaProdukt}</div>
       <div className='details'>Kod EAN: {kodEan}</div>
+      <div className='details'>Dostawca ID: {idDostawca}</div>
       <CustomButton disabled={isDisabled} onCLick={approve} text={'Zatwierdz'} />
     </CustomModal>
   )

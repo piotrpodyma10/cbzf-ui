@@ -85,7 +85,6 @@ export const productCategoryFields = [
 ]
 
 export const productSquadFields = [
-  { field: 'skladnikIlosc', type: 'number', label: 'Składnik Ilość', required: true },
   { field: 'skladnik1', type: 'string', label: 'Składnik 1' },
   { field: 'skladnik2', type: 'string', label: 'Składnik 2' },
   { field: 'skladnik3', type: 'string', label: 'Składnik 3' },
@@ -94,7 +93,6 @@ export const productSquadFields = [
   { field: 'skladnik6', type: 'string', label: 'Składnik 6' },
   { field: 'skladnik7', type: 'string', label: 'Składnik 7' },
   { field: 'skladnik8', type: 'string', label: 'Składnik 8' },
-  { field: 'dodatekIlosc', type: 'number', label: 'Dodatek Ilość' },
   { field: 'idDodatek1', type: 'number', label: 'Dodatek 1' },
   { field: 'idDodatek2', type: 'number', label: 'Dodatek 2' },
   { field: 'idDodatek3', type: 'number', label: 'Dodatek 3' },
@@ -338,15 +336,6 @@ export const productNutritionVitaminFields = [
 ]
 
 export const productNutritionMineralFields = [
-  {
-    nazwaGrupy: 'Minerały',
-    nazwa: 'Sód',
-    zawartosc: 0,
-
-    jednostka: 'g',
-    procentRws: 0,
-    indeks: null,
-  },
   {
     nazwaGrupy: 'Minerały',
     nazwa: 'Potas',
