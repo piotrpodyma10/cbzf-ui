@@ -259,6 +259,22 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     console.log(file)
   }
 
+  const handleInput = (event, min = 0, max = 3) => {
+    const value = event.target.value
+    if (value < min || value > max) {
+      event.preventDefault()
+      return
+    }
+  }
+
+  const handleKeyPress = (event, min = 0, max = 3) => {
+    const key = event.key
+    const value = event.target.value + key
+    if (isNaN(key) || value < min || value > max) {
+      event.preventDefault()
+    }
+  }
+
   return (
     <CustomModal className='add-product-modal' open={open} handleClose={close}>
       <div className='container'>
@@ -373,6 +389,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                           size='small'
                           minNumber={isWartosc ? 1 : 0}
                           maxNumber={isWartosc ? 6 : 3}
+                          onInput={(e) => handleInput(e, 1, 6)}
+                          onKeyPress={(e) => handleKeyPress(e, 1, 6)}
                           className='index'
                           type={'number'}
                           value={f.indeks}
@@ -411,6 +429,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -447,6 +467,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -487,6 +509,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                           size='small'
                           minNumber={0}
                           maxNumber={3}
+                          onInput={handleInput}
+                          onKeyPress={handleKeyPress}
                           className='index'
                           type={'number'}
                           value={f.indeks}
@@ -529,6 +553,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                           size='small'
                           minNumber={0}
                           maxNumber={3}
+                          onInput={handleInput}
+                          onKeyPress={handleKeyPress}
                           className='index'
                           type={'number'}
                           value={f.indeks}
@@ -571,6 +597,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                           size='small'
                           minNumber={0}
                           maxNumber={3}
+                          onInput={handleInput}
+                          onKeyPress={handleKeyPress}
                           className='index'
                           type={'number'}
                           value={f.indeks}
@@ -611,6 +639,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         disabled={isTotal}
                         type={'number'}
                         value={f.indeks}
@@ -649,6 +679,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         disabled={isTotal}
                         type={'number'}
                         value={f.indeks}
@@ -687,6 +719,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         disabled={isTotal}
                         value={f.indeks}
@@ -724,6 +758,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -762,6 +798,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -798,6 +836,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -834,6 +874,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -870,6 +912,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -906,6 +950,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -942,6 +988,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -978,6 +1026,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -1014,6 +1064,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -1050,6 +1102,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -1086,6 +1140,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
@@ -1122,6 +1178,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                         size='small'
                         className='index'
                         maxNumber={3}
+                        onInput={handleInput}
+                        onKeyPress={handleKeyPress}
                         type={'number'}
                         value={f.indeks}
                         InputLabelProps={editMode ? { shrink: true } : {}}
