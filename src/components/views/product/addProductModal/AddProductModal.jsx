@@ -40,12 +40,15 @@ import { useSelector } from 'react-redux'
 import { auth } from '../../../../features/redux/auth/authSlice'
 import { isNotEmpty } from '../../../../utils/userUtils'
 import './AddProductModal.scss'
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { CustomUploadButton } from '../../../common/customUploadButton/CustomUploadButton'
 
 export const AddProductModal = ({ handleClose, open, product = {}, editMode = false, fetchPendingProducts }) => {
   const { user, isProvider, isSuperExpert, isAdmin } = useSelector(auth)
   const { supplier = {} } = user
   const { id = '' } = supplier
   const [fields, setFields] = useState({})
+  const [image, setImage] = useState(null)
 
   const allNutritions = [
     ...productNutritionGeneralFields,
@@ -71,7 +74,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const [nutritionfields, setNutritionFields] = useState(allNutritions)
   const [indexes, setIndexes] = useState({})
   const [porcja, setPorcja] = useState(100)
-  const [par2, setPar2] = useState(null)
+  const [par2, setPar2] = useState('g')
 
   const allFields = [
     { field: 'kodEan', type: 'string', label: 'Kod EAN', required: true },
@@ -111,17 +114,15 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             if (isPorcja) {
               setPorcja(isPorcja)
             }
+
+            if (isSEorAdmin) {
+              getCalculatedIndexes(updatedNutritions)
+            }
           }
         }
       })
     }
   }, [product])
-
-  useEffect(() => {
-    if (isSEorAdmin) {
-      getCalculatedIndexes()
-    }
-  }, [isSuperExpert, isAdmin])
 
   const handleNutritionUpdate = (nazwaGrupy, nazwa, cell, newValue, total = true) => {
     if (cell === 'indeks' && newValue > 3 && total) {
@@ -139,7 +140,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     })
   }
 
-  const getCalculatedIndexes = async () => {
+  const getCalculatedIndexes = async (nutritionfields) => {
     if (nutritionfields.length > 0) {
       try {
         const response = await calculateIndexes(nutritionfields)
@@ -162,7 +163,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     setNutritionFields(allNutritions)
     setIndexes({})
     setPorcja(0)
-    setPar2(null)
+    setPar2('g')
     handleClose()
   }
 
@@ -249,6 +250,15 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const allIndexes = [generalata, fatData, carbioData, vitaminsData, mineralsData]
   const canCalculate = !(!isProvider && nutritionfields.length > 0)
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0]
+    if (file) {
+      setImage(file)
+    }
+
+    console.log(file)
+  }
+
   return (
     <CustomModal className='add-product-modal' open={open} handleClose={close}>
       <div className='container'>
@@ -270,22 +280,24 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
               )
             })}
           </CustomAccordion>
-          <CustomAccordion title={'Kategorie'}>
-            {productCategoryFields.map((f, key) => {
-              return (
-                <div key={key} className='field'>
-                  <CustomTextField
-                    onChange={(e) => handleFields(e, f, setFields, fields)}
-                    type={f.type}
-                    label={f.label}
-                    value={fields?.[f.field]}
-                    InputLabelProps={editMode ? { shrink: true } : {}}
-                    required={f.required}
-                  />
-                </div>
-              )
-            })}
-          </CustomAccordion>
+          {!isProvider && (
+            <CustomAccordion title={'Kategorie'}>
+              {productCategoryFields.map((f, key) => {
+                return (
+                  <div key={key} className='field'>
+                    <CustomTextField
+                      onChange={(e) => handleFields(e, f, setFields, fields)}
+                      type={f.type}
+                      label={f.label}
+                      value={fields?.[f.field]}
+                      InputLabelProps={editMode ? { shrink: true } : {}}
+                      required={f.required}
+                    />
+                  </div>
+                )
+              })}
+            </CustomAccordion>
+          )}
           <CustomAccordion title={'Etykiety'}>
             {productLabelFields.map((f, key) => {
               return (
@@ -301,6 +313,8 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
                 </div>
               )
             })}
+            <CustomUploadButton onChange={handleFileChange} />
+            {image && <div style={{ marginTop: '10px' }}>{image.name}</div>}
           </CustomAccordion>
           <CustomAccordion title={'Skład'}>
             {productSquadFields.map((f, key) => {
@@ -321,10 +335,13 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
           <CustomAccordion title={'Wartość odżywcza'}>
             <CustomAccordion title={'Ogólne wartości'}>
               <div>
-                <div>W przeliczeniu na*</div>
-                <span>g</span>
-                <CustomSwitch value={par2} checked={par2} required={true} onChange={(e, v) => setPar2(v)} />
-                <span>ml</span>
+                <FormControl onChange={(e) => setPar2(e.target.value)}>
+                  <FormLabel>W przeliczeniu na*</FormLabel>
+                  <RadioGroup row value={par2}>
+                    <FormControlLabel value='g' control={<Radio />} label='g' />
+                    <FormControlLabel value='ml' control={<Radio />} label='ml' />
+                  </RadioGroup>
+                </FormControl>
               </div>
               <CustomTextField
                 onChange={(e) => setPorcja(e.target.value)}
@@ -1121,7 +1138,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
               <CustomButton
                 disabled={canCalculate}
                 text={'Oblicz Indexy'}
-                onClick={getCalculatedIndexes}
+                onClick={() => getCalculatedIndexes(nutritionfields)}
                 className='calculate-indexes'
               />
               {praductIndexFields.map((f, key) => {

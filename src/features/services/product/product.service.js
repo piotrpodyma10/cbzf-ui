@@ -28,6 +28,14 @@ export const addPendingProduct = (product) => {
   return axios.put(config.endpoints.temporaryProduct, product)
 }
 
+export const uploadFileToPendingProduct = (product) => {
+  return axios.put(config.endpoints.temporaryProduct, product, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+}
+
 export const approveProduct = (provider) => {
   return axios.put(config.endpoints.approveProduct, provider)
 }

@@ -16,6 +16,8 @@ export const ProductNutritions = () => {
   const porcja = nutrition?.[0]?.porcja
   const unitPorcja = `${porcja} ${nutrition?.[0]?.par2Nutrition}`
 
+  const legends = nutrition.filter((nutr) => nutr.legenda)
+
   useEffect(() => {
     getProducts('', { productId: id }).then((response) => {
       const data = response.data
@@ -48,6 +50,8 @@ export const ProductNutritions = () => {
     { label: 'Indeks', id: 'indeks' },
   ]
 
+  const legendColumns = [{ label: 'Nazwa', id: 'legenda' }]
+
   const basicProductNutritions = {
     rows: nutrition,
     columns: columns,
@@ -56,6 +60,11 @@ export const ProductNutritions = () => {
   const extraProductNutritions = {
     rows: extraNutrition,
     columns: columns,
+  }
+
+  const legendsData = {
+    rows: legends,
+    columns: legendColumns,
   }
 
   return (
@@ -79,6 +88,11 @@ export const ProductNutritions = () => {
         <CustomAccordion title={'Dodatkowe'}>
           <DataTable data={extraProductNutritions} noPagination={true} isScroll={true} />
         </CustomAccordion>
+        {legends.length > 0 && (
+          <CustomAccordion title={'Legenda'}>
+            <DataTable className='short-table' data={legendsData} noPagination={true} isScroll={true} />
+          </CustomAccordion>
+        )}
       </div>
     </Card>
   )

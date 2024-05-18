@@ -15,7 +15,7 @@ import Box from '@mui/material/Box'
 import Row from './row/Row'
 import './DataTable.scss'
 
-export default function DataTable({ data, noPagination, all, isScroll = false }) {
+export default function DataTable({ className = '', data, noPagination, all, isScroll = false }) {
   const { rows, columns } = data
   const [rowsPerPage, setRowsPerPage] = useState(all ? -1 : 10)
   const [orderBy, setOrderBy] = useState('status')
@@ -56,7 +56,7 @@ export default function DataTable({ data, noPagination, all, isScroll = false })
   return (
     <div className='data-table'>
       {/* <Filters /> */}
-      <TableContainer className='table-container'>
+      <TableContainer className={`table-container ${className}`}>
         <Table>
           <TableHead>
             <TableRow>
