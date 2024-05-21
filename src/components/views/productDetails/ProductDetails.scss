@@ -26,6 +26,7 @@
 
     .details-cards-container {
       display: flex;
+      width: 100%;
 
       .indexes-nutritions {
         margin: 0 20px;
@@ -50,7 +51,17 @@
     margin-left: 40px;
   }
 
+  .legenda {
+    margin-top: 20px;
+
+    .short-table {
+      height: auto;
+    }
+  }
+
   .product-details {
+    width: 100%;
+
     .details-table {
       overflow-x: auto;
       width: 100%;

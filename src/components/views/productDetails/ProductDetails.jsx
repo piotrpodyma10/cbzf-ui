@@ -25,6 +25,14 @@ export const ProductDetails = () => {
   const [indexes, setIndexes] = useState([])
   const [rates, setRates] = useState([])
 
+  const legends = nutrition.filter((nutr) => nutr?.legenda)
+  const legendColumns = [{ label: 'Nazwa', id: 'legenda' }]
+
+  const legendsData = {
+    rows: legends,
+    columns: legendColumns,
+  }
+
   useEffect(() => {
     getProducts('', { productId: id }).then((response) => {
       const data = response.data
@@ -133,6 +141,17 @@ export const ProductDetails = () => {
           </Card>
           <div className='indexes-nutritions'>
             <ProductIndexes product={indexes} nutrition={nutrition} />
+            {legends.length > 0 && (
+              <Card className='legenda'>
+                <DataTable
+                  className='short-table'
+                  noHeader={true}
+                  data={legendsData}
+                  noPagination={true}
+                  isScroll={true}
+                />
+              </Card>
+            )}
             {/* <Card className='nutritions-card'>
               <div className='title'>Wartości odżywcze</div>
               <CustomAccordion title={'Ogólne'}>

@@ -15,7 +15,7 @@ import Box from '@mui/material/Box'
 import Row from './row/Row'
 import './DataTable.scss'
 
-export default function DataTable({ className = '', data, noPagination, all, isScroll = false }) {
+export default function DataTable({ className = '', data, noPagination, all, isScroll = false, noHeader = false }) {
   const { rows, columns } = data
   const [rowsPerPage, setRowsPerPage] = useState(all ? -1 : 10)
   const [orderBy, setOrderBy] = useState('status')
@@ -58,43 +58,45 @@ export default function DataTable({ className = '', data, noPagination, all, isS
       {/* <Filters /> */}
       <TableContainer className={`table-container ${className}`}>
         <Table>
-          <TableHead>
-            <TableRow>
-              <>
-                {columns.map((column, index) => {
-                  let displayLabel = column.label
-                  if (displayLabel.includes('\n')) {
-                    const splitValue = displayLabel.split('\n')
-                    displayLabel = (
-                      <div>
-                        <div>{splitValue[0]}</div> <div>{splitValue[1]}</div>{' '}
-                      </div>
-                    )
-                  }
+          {!noHeader && (
+            <TableHead>
+              <TableRow>
+                <>
+                  {columns.map((column, index) => {
+                    let displayLabel = column.label
+                    if (displayLabel.includes('\n')) {
+                      const splitValue = displayLabel.split('\n')
+                      displayLabel = (
+                        <div>
+                          <div>{splitValue[0]}</div> <div>{splitValue[1]}</div>{' '}
+                        </div>
+                      )
+                    }
 
-                  return (
-                    <TableCell
-                      className='header-cell'
-                      align={'center'}
-                      key={index}
-                      sortDirection={orderBy === column.id ? order : false}
-                    >
-                      <TableSortLabel
-                        active={orderBy === column.id}
-                        direction={orderBy === column.id ? order : 'asc'}
-                        onClick={createSortHandler(column.id)}
+                    return (
+                      <TableCell
+                        className='header-cell'
+                        align={'center'}
+                        key={index}
+                        sortDirection={orderBy === column.id ? order : false}
                       >
-                        {displayLabel}
-                        {orderBy === column.id ? (
-                          <Box sx={visuallyHidden}>{order === 'desc' ? 'sorted descending' : 'sorted ascending'}</Box>
-                        ) : null}
-                      </TableSortLabel>
-                    </TableCell>
-                  )
-                })}
-              </>
-            </TableRow>
-          </TableHead>
+                        <TableSortLabel
+                          active={orderBy === column.id}
+                          direction={orderBy === column.id ? order : 'asc'}
+                          onClick={createSortHandler(column.id)}
+                        >
+                          {displayLabel}
+                          {orderBy === column.id ? (
+                            <Box sx={visuallyHidden}>{order === 'desc' ? 'sorted descending' : 'sorted ascending'}</Box>
+                          ) : null}
+                        </TableSortLabel>
+                      </TableCell>
+                    )
+                  })}
+                </>
+              </TableRow>
+            </TableHead>
+          )}
           <TableBody>{sortSliceData(rows)}</TableBody>
         </Table>
       </TableContainer>
