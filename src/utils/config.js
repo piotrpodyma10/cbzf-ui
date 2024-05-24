@@ -23,5 +23,8 @@ export const config = {
     addPendingNutrition: `${apiUrl}/cbzf/store_temporary_nutrition`,
     addNutrition: `${apiUrl}/cbzf/store_nutrition`,
     calculateIndexes: `${apiUrl}/cbzf/calculate_indices`,
+    labelImage: `${apiUrl}/cbzf/get_label_image`,
+    storeLabelImage: `${apiUrl}/cbzf/store_label_image`,
+    storeTemporaryLabelImage: `${apiUrl}/cbzf/store_temporary_label_image`,
   },
 }

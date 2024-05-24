@@ -28,7 +28,7 @@ export const CustomUploadButton = ({ ...rest }) => {
         startIcon={<CloudUploadIcon />}
         text={
           <>
-            Upload file
+            Dodaj Etykiete
             <VisuallyHiddenInput type='file' />
           </>
         }

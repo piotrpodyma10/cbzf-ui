@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Card from '../../common/card/Card'
 import DataTable from '../../common/dataTable/DataTable'
 import {
+  getProductImage,
   getProductIndexes,
   getProductIngredients,
   getProductLabels,
@@ -20,6 +21,7 @@ export const ProductDetails = () => {
   const { id } = useParams()
   const [product, setProduct] = useState([])
   const [nutrition, setNutrition] = useState([])
+  const [image, setImage] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [labels, setLabels] = useState([])
   const [indexes, setIndexes] = useState([])
@@ -70,6 +72,14 @@ export const ProductDetails = () => {
       const data = response.data
       if (data && data.length > 0) {
         setRates(data)
+      }
+    })
+    getProductImage(id).then((response) => {
+      const imageResponse = response.data
+      if (imageResponse.byteLength > 0) {
+        const blob = new Blob([imageResponse], { type: 'image/jpeg' })
+        const url = URL.createObjectURL(blob)
+        setImage(url)
       }
     })
   }, [])
@@ -138,6 +148,12 @@ export const ProductDetails = () => {
                 <DataTable data={productParameters} all={true} noPagination={true} />
               </div>
             </CustomAccordion>
+            {image && (
+              <Card>
+                <div style={{ fontSize: '14px', fontWeight: 'bold', padding: '16px' }}>Etykieta</div>
+                <img style={{ marginBottom: '20px' }} src={image} width={400} />
+              </Card>
+            )}
           </Card>
           <div className='indexes-nutritions'>
             <ProductIndexes product={indexes} nutrition={nutrition} />
@@ -152,22 +168,10 @@ export const ProductDetails = () => {
                 />
               </Card>
             )}
-            {/* <Card className='nutritions-card'>
-              <div className='title'>Wartości odżywcze</div>
-              <CustomAccordion title={'Ogólne'}>
-                <div className='nutritions-table'>
-                  <DataTable data={productNutritions} noPagination={true} />
-                </div>
-              </CustomAccordion>
-              <CustomAccordion title={'Szczegółowe'}>
-                <div className='nutritions-table'>
-                  <DataTable data={productNutritions} noPagination={true} />
-                </div>
-              </CustomAccordion>
-            </Card> */}
           </div>
         </div>
       </div>
+
       <div className='details-container'></div>
     </div>
   )

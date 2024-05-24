@@ -13,7 +13,6 @@ export const ApproveProductModal = ({ open, handleClose, product, fetchPendingPr
   const [nutritions, setNutritions] = useState([])
   const { nazwaProdukt, kodEan, idProdukt, idDostawca } = product
 
-
   useEffect(() => {
     if (idProdukt) {
       getPendingProductNutrition(idProdukt).then((response) => {

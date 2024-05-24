@@ -75,3 +75,25 @@ export const addNutrition = (nutritions) => {
 export const calculateIndexes = (nutritions) => {
   return axios.put(config.endpoints.calculateIndexes, nutritions)
 }
+
+export const getProductImage = (productId) => {
+  return axios.get(`${config.endpoints.labelImage}?idProdukt=${productId}`, {
+    responseType: 'arraybuffer',
+  })
+}
+
+export const addPendingLabelImage = (formData) => {
+  return axios.put(`${config.endpoints.storeTemporaryLabelImage}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+}
+
+export const addLabelImage = (formData) => {
+  return axios.put(`${config.endpoints.storeLabelImage}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+}

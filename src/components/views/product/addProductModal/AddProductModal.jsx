@@ -30,6 +30,7 @@ import {
 } from '../../../../utils/dataUtils'
 import { handleFields } from '../../../../utils/fieldsUtils'
 import {
+  addPendingLabelImage,
   addPendingNutrition,
   addPendingProduct,
   calculateIndexes,
@@ -201,6 +202,20 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             ...nutritionField,
           }
         })
+
+        if (image) {
+          const formData = new FormData()
+          formData.append('idProdukt', productId)
+          formData.append('labelImage', image)
+          addPendingLabelImage(formData)
+            .then((response) => {
+              console.log('Response', response)
+            })
+            .catch((e) => {
+              console.log('Error', e)
+              toast.error('Label image upload failed')
+            })
+        }
 
         addPendingNutrition(allPreparedNutritions)
           .then((nutrResponse) => {
