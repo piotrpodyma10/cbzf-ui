@@ -54,26 +54,26 @@ export const getIndex = (value, index = 'en') => {
       return
     }
     indexImage = FFA
-    indexLetter = 'A'
+    // indexLetter = 'A'
     if (value >= 1 && value <= 2) {
       indexImage = FFB
-      indexLetter = 'B'
+      // indexLetter = 'B'
     }
     if (value >= 3 && value <= 4) {
       indexImage = FFC
-      indexLetter = 'C'
+      // indexLetter = 'C'
     }
     if (value >= 5 && value <= 6) {
       indexImage = FFD
-      indexLetter = 'D'
+      // indexLetter = 'D'
     }
     if (value >= 7 && value <= 8) {
       indexImage = FFE
-      indexLetter = 'E'
+      // indexLetter = 'E'
     }
     if (value > 8) {
       indexImage = FFF
-      indexLetter = 'F'
+      // indexLetter = 'F'
     }
   }
 
@@ -82,26 +82,26 @@ export const getIndex = (value, index = 'en') => {
       return
     }
     indexImage = CLA
-    indexLetter = 'A'
+    // indexLetter = 'A'
     if (value >= 1 && value <= 2) {
       indexImage = CLB
-      indexLetter = 'B'
+      // indexLetter = 'B'
     }
     if (value >= 3 && value <= 4) {
       indexImage = CLC
-      indexLetter = 'C'
+      // indexLetter = 'C'
     }
     if (value >= 5 && value <= 6) {
       indexImage = CLD
-      indexLetter = 'D'
+      // indexLetter = 'D'
     }
     if (value >= 7 && value <= 9) {
       indexImage = CLE
-      indexLetter = 'E'
+      // indexLetter = 'E'
     }
     if (value > 10) {
       indexImage = CLF
-      indexLetter = 'F'
+      // indexLetter = 'F'
     }
   }
 
