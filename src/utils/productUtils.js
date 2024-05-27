@@ -19,26 +19,33 @@ import CLF from '../assets/imgs/indexes/cl/F.png'
 
 export const getIndex = (value, index = 'en') => {
   let indexImage = ''
+  let indexLetter = ''
 
   if (index === 'en') {
     if (!value) {
       return
     }
     indexImage = ENA
+    indexLetter = 'A'
     if (value >= 100 && value <= 200) {
       indexImage = ENB
+      indexLetter = 'B'
     }
     if (value >= 201 && value <= 300) {
       indexImage = ENC
+      indexLetter = 'C'
     }
     if (value >= 301 && value <= 500) {
       indexImage = END
+      indexLetter = 'D'
     }
     if (value >= 501 && value <= 700) {
       indexImage = ENE
+      indexLetter = 'E'
     }
     if (value > 700) {
       indexImage = ENF
+      indexLetter = 'F'
     }
   }
 
@@ -47,20 +54,26 @@ export const getIndex = (value, index = 'en') => {
       return
     }
     indexImage = FFA
+    indexLetter = 'A'
     if (value >= 1 && value <= 2) {
       indexImage = FFB
+      indexLetter = 'B'
     }
     if (value >= 3 && value <= 4) {
       indexImage = FFC
+      indexLetter = 'C'
     }
     if (value >= 5 && value <= 6) {
       indexImage = FFD
+      indexLetter = 'D'
     }
     if (value >= 7 && value <= 8) {
       indexImage = FFE
+      indexLetter = 'E'
     }
     if (value > 8) {
       indexImage = FFF
+      indexLetter = 'F'
     }
   }
 
@@ -69,22 +82,33 @@ export const getIndex = (value, index = 'en') => {
       return
     }
     indexImage = CLA
+    indexLetter = 'A'
     if (value >= 1 && value <= 2) {
       indexImage = CLB
+      indexLetter = 'B'
     }
     if (value >= 3 && value <= 4) {
       indexImage = CLC
+      indexLetter = 'C'
     }
     if (value >= 5 && value <= 6) {
       indexImage = CLD
+      indexLetter = 'D'
     }
     if (value >= 7 && value <= 9) {
       indexImage = CLE
+      indexLetter = 'E'
     }
     if (value > 10) {
       indexImage = CLF
+      indexLetter = 'F'
     }
   }
 
-  return <img height={28} src={indexImage} />
+  return (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <span>{indexLetter}</span>
+      <img height={28} src={indexImage} />
+    </div>
+  )
 }

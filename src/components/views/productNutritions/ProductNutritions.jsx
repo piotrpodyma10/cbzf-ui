@@ -60,7 +60,7 @@ export const ProductNutritions = () => {
 
   return (
     <Card className='product-nutritions'>
-      <div className='title'>Wartości odżywcze</div>
+      <div className='title'>Wartość odżywcza</div>
       <div className='product-details'>
         <div className='product-name'>
           <span className='title'>Produkt: </span>

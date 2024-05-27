@@ -50,7 +50,7 @@ export const ProductPanel = ({ isConsumer }) => {
           <CustomButton
             text={
               <div>
-                Wartości odżywcze <ArrowForwardIosIcon />
+                Wartość odżywcza <ArrowForwardIosIcon />
               </div>
             }
             className='details-page'

@@ -175,6 +175,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     addPendingProduct(allFields)
       .then((response) => {
         const productId = response.data
+        const usedIds = new Set()
         const allPreparedNutritions = nutritionfields.map((nutritionField, index) => {
           let idNutrient = index + 1
 
@@ -194,10 +195,16 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             idNutrient = 3
           }
 
+          while (usedIds.has(idNutrient)) {
+            idNutrient++
+          }
+
+          usedIds.add(idNutrient)
+
           return {
             idProdukt: productId,
             idNutrient: idNutrient,
-            par2Nutrition: par2 ? 'ml' : 'g',
+            par2Nutrition: par2,
             porcja: porcja,
             ...nutritionField,
           }
