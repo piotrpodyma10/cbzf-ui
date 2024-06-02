@@ -41,12 +41,12 @@ export const ProductIndexes = ({ product, nutrition }) => {
           <div className='index'>
             <span className='index-title'>Indeks SUM:</span>
             <div className='index-value'>{indeksS}</div>
-            {getIndex(indeksS, 'ff')}
+            {getIndex(indeksS, 'cl')}
           </div>
           <div className='index'>
             <span className='index-title'>Indeks FF:</span>
             <div className='index-value'>{indeksT}</div>
-            {getIndex(indeksT, 'cl')}
+            {getIndex(indeksT, 'ff')}
           </div>
         </div>
       </div>

@@ -111,8 +111,7 @@ export const ProductDetails = () => {
   const productParameters = {
     rows: rates,
     columns: [
-      { label: 'Grupa', id: 'nazwaGrupa' },
-      { label: 'Parametr', id: 'nazwaPar' },
+      { label: '', id: 'nazwaPar' },
     ],
   }
 
