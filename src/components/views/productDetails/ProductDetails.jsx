@@ -65,7 +65,11 @@ export const ProductDetails = () => {
     getProductLabels(id).then((response) => {
       const data = response.data
       if (data && data.length > 0) {
-        setLabels(data[0])
+        const labelsWithoutObraz = data.map(label => {
+            const { obraz, ...labelWithoutObraz } = label;
+            return labelWithoutObraz;
+        });
+        setLabels(labelsWithoutObraz[0]);
       }
     })
     getRateOfProduct(id).then((response) => {
