@@ -1,6 +1,5 @@
 .produt-details-page {
   .title {
-    padding: 20px;
     font-size: 16px;
     font-weight: bold;
   }
@@ -66,6 +65,13 @@
 
   .product-details {
     width: 100%;
+
+    .title-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
 
     .details-table {
       overflow-x: auto;

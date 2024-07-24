@@ -13,7 +13,6 @@ function Product() {
   let tabs = [
     { label: 'Panel', content: <ProductPanel /> },
     { label: 'Oczekujące', content: <PendingProducts /> },
-    { label: 'RAPORT', content: <div>Raport produktu</div> },
   ]
 
   tabs = isProvider ? tabs.filter((tab) => tab.label !== 'RAPORT') : tabs

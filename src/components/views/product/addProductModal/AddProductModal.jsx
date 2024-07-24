@@ -34,7 +34,9 @@ import {
   addPendingNutrition,
   addPendingProduct,
   calculateIndexes,
+  getPendingProductImage,
   getPendingProductNutrition,
+  getProductImage,
 } from '../../../../features/services/product/product.service'
 import { CustomSwitch } from '../../../common/customSwitch/CustomSwitch'
 import { useSelector } from 'react-redux'
@@ -50,6 +52,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
   const { id = '' } = supplier
   const [fields, setFields] = useState({})
   const [image, setImage] = useState(null)
+  const [savedImage, setSavedImage] = useState(null)
 
   const allNutritions = [
     ...productNutritionGeneralFields,
@@ -92,36 +95,52 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     par2 !== null && requiredFields.every((field) => Object.keys(fields).includes(field)) ? false : true
 
   useEffect(() => {
-    if (isNotEmpty(product)) {
-      setFields(product)
+    try {
+      if (isNotEmpty(product)) {
+        setFields(product)
 
-      const { idProdukt } = product
-      getPendingProductNutrition(idProdukt).then((response) => {
-        const nutritions = response.data
-        if (nutritions.length > 0) {
-          const updatedNutritions =
-            nutritionfields &&
-            nutritionfields.length > 0 &&
-            nutritionfields.map((nutrition) => {
-              const findRecord = nutritions.filter(
-                (nutri) => nutri.nazwa === nutrition.nazwa && nutri.nazwaGrupy === nutrition.nazwaGrupy
-              )
-              const record = findRecord.length > 0 ? findRecord[0] : nutrition
-              return { ...record }
-            })
-          if (updatedNutritions.length > 0) {
-            setNutritionFields(updatedNutritions)
-            const isPorcja = updatedNutritions[0].porcja
-            if (isPorcja) {
-              setPorcja(isPorcja)
-            }
+        const { idProdukt } = product
+        getPendingProductNutrition(idProdukt).then((response) => {
+          const nutritions = response.data
+          if (nutritions.length > 0) {
+            const updatedNutritions =
+              nutritionfields &&
+              nutritionfields.length > 0 &&
+              nutritionfields.map((nutrition) => {
+                const findRecord = nutritions.filter(
+                  (nutri) => nutri.nazwa === nutrition.nazwa && nutri.nazwaGrupy === nutrition.nazwaGrupy
+                )
+                const record = findRecord.length > 0 ? findRecord[0] : nutrition
+                return { ...record }
+              })
+            if (updatedNutritions.length > 0) {
+              setNutritionFields(updatedNutritions)
+              const isPorcja = updatedNutritions[0].porcja
+              if (isPorcja) {
+                setPorcja(isPorcja)
+              }
 
-            if (isSEorAdmin) {
-              getCalculatedIndexes(updatedNutritions)
+              if (isSEorAdmin) {
+                getCalculatedIndexes(updatedNutritions)
+              }
             }
           }
-        }
-      })
+        })
+        getPendingProductImage(idProdukt)
+          .then((response) => {
+            const imageResponse = response.data
+            if (imageResponse.byteLength > 0) {
+              const blob = new Blob([imageResponse], { type: 'image/jpeg' })
+              const url = URL.createObjectURL(blob)
+              setSavedImage(url)
+            }
+          })
+          .catch((e) => {
+            console.log('Error', e)
+          })
+      }
+    } catch (e) {
+      console.log('Error', e)
     }
   }, [product])
 
@@ -166,6 +185,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     setPorcja(0)
     setPar2('g')
     handleClose()
+    setSavedImage(null)
   }
 
   const saveData = () => {
@@ -217,6 +237,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
           addPendingLabelImage(formData)
             .then((response) => {
               console.log('Response', response)
+              setImage(null)
             })
             .catch((e) => {
               console.log('Error', e)
@@ -353,6 +374,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
             })}
             <CustomUploadButton onChange={handleFileChange} />
             {image && <div style={{ marginTop: '10px' }}>{image.name}</div>}
+            {savedImage && <img style={{ marginTop: '10px' }} src={savedImage} width={200} />}
           </CustomAccordion>
           <CustomAccordion title={'Skład'}>
             {productSquadFields.map((f, key) => {

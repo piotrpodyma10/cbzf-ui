@@ -82,6 +82,31 @@ export const getProductImage = (productId) => {
   })
 }
 
+export const getPendingProductImage = (productId) => {
+  return axios.get(`${config.endpoints.pendingLabelImage}?idProdukt=${productId}`, {
+    responseType: 'arraybuffer',
+  })
+}
+
+export const getProductReport = (productId) => {
+  return axios
+    .get(`${config.endpoints.getReport}?id=${productId}`, {
+      responseType: 'blob',
+    })
+    .then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', `report_${productId}.pdf`)
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+    })
+    .catch((error) => {
+      console.error('Error downloading the report:', error)
+    })
+}
+
 export const addPendingLabelImage = (formData) => {
   return axios.put(`${config.endpoints.storeTemporaryLabelImage}`, formData, {
     headers: {

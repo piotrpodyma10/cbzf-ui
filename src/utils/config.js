@@ -24,6 +24,8 @@ export const config = {
     addNutrition: `${apiUrl}/cbzf/store_nutrition`,
     calculateIndexes: `${apiUrl}/cbzf/calculate_indices`,
     labelImage: `${apiUrl}/cbzf/get_label_image`,
+    pendingLabelImage: `${apiUrl}/cbzf/get_temporary_label_image`,
+    getReport: `${apiUrl}/cbzf/get_product_report`,
     storeLabelImage: `${apiUrl}/cbzf/store_label_image`,
     storeTemporaryLabelImage: `${apiUrl}/cbzf/store_temporary_label_image`,
   },

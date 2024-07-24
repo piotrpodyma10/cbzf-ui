@@ -7,6 +7,7 @@ import {
   getProductIngredients,
   getProductLabels,
   getProductNutrition,
+  getProductReport,
   getProducts,
 } from '../../../features/services/product/product.service'
 import { useParams } from 'react-router-dom'
@@ -16,6 +17,9 @@ import { List } from '../../common/list/List'
 import { ProductIndexes } from './productIndexes/ProductIndexes'
 import { CustomAccordion } from '../../common/customAccordion/CustomAccordion'
 import { getRateOfProduct } from '../../../features/services/rate/rate.service'
+import { CustomButton } from '../../common/customButton/CustomButton'
+import { useSelector } from 'react-redux'
+import { auth } from '../../../features/redux/auth/authSlice'
 
 export const ProductDetails = () => {
   const { id } = useParams()
@@ -26,9 +30,12 @@ export const ProductDetails = () => {
   const [labels, setLabels] = useState([])
   const [indexes, setIndexes] = useState([])
   const [rates, setRates] = useState([])
+  const { isAdmin, isSuperExpert } = useSelector(auth)
 
   const legends = nutrition.filter((nutr) => nutr?.legenda)
   const legendColumns = [{ label: 'Nazwa', id: 'legenda' }]
+
+  const isReport = isAdmin || isSuperExpert
 
   const legendsData = {
     rows: legends,
@@ -65,11 +72,11 @@ export const ProductDetails = () => {
     getProductLabels(id).then((response) => {
       const data = response.data
       if (data && data.length > 0) {
-        const labelsWithoutObraz = data.map(label => {
-            const { obraz, ...labelWithoutObraz } = label;
-            return labelWithoutObraz;
-        });
-        setLabels(labelsWithoutObraz[0]);
+        const labelsWithoutObraz = data.map((label) => {
+          const { obraz, ...labelWithoutObraz } = label
+          return labelWithoutObraz
+        })
+        setLabels(labelsWithoutObraz[0])
       }
     })
     getRateOfProduct(id).then((response) => {
@@ -87,6 +94,14 @@ export const ProductDetails = () => {
       }
     })
   }, [])
+
+  const getReport = () => {
+    try {
+      getProductReport(id)
+    } catch (e) {
+      console.log('Error', e)
+    }
+  }
 
   const wartosciOdz = [
     { avgLife: 'Wartość energetyczna', '100ml': '151 kJ\n 36 kcal', '75ml': '114 kJ\n 27 kcal', rws: '1%' },
@@ -114,9 +129,7 @@ export const ProductDetails = () => {
 
   const productParameters = {
     rows: rates,
-    columns: [
-      { label: '', id: 'nazwaPar' },
-    ],
+    columns: [{ label: '', id: 'nazwaPar' }],
   }
 
   const productDescription = {
@@ -131,7 +144,14 @@ export const ProductDetails = () => {
       <div className='details-container'>
         <div className='details-cards-container'>
           <Card className='product-details'>
-            <div className='title'>{product.nazwaProdukt}</div>
+            <div className='title-container'>
+              <div className='title'>{product.nazwaProdukt}</div>
+              {isReport && (
+                <div className='report'>
+                  <CustomButton text={'Ściągnij Raport'} onCLick={getReport} />
+                </div>
+              )}
+            </div>
             <CustomAccordion title={'Opis produktu'}>
               <div className='description'>{product.opisProdukt}</div>
               <List data={productDescription} />
@@ -148,7 +168,7 @@ export const ProductDetails = () => {
             </CustomAccordion>
             <CustomAccordion title={'Parametry'}>
               <div className='nutritions-table'>
-                <DataTable data={productParameters} all={true} noPagination={true} />
+                <DataTable data={productParameters} all={productParameters?.rows?.length} noPagination={true} />
               </div>
             </CustomAccordion>
             {image && (
