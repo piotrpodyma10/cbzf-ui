@@ -119,6 +119,10 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
               if (isPorcja) {
                 setPorcja(isPorcja)
               }
+              const par2Nutrition = updatedNutritions[0].par2Nutrition
+              if (par2Nutrition) {
+                setPar2(par2Nutrition)
+              }
 
               if (isSEorAdmin) {
                 getCalculatedIndexes(updatedNutritions)
