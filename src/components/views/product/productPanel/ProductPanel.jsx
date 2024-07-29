@@ -84,11 +84,11 @@ export const ProductPanel = ({ isConsumer }) => {
     rows: products,
     columns: [
       { label: 'Kod EAN', id: 'kodEan' },
-      { label: 'Nazwa', id: 'nazwaProdukt' },
+      { label: 'Nazwa/Brand', id: 'nazwaProdukt' },
       { label: 'Opis', id: 'opisProdukt' },
-      { label: 'Waga', id: 'wagaProdukt' },
+      { label: 'Waga/Objętość', id: 'wagaProdukt' },
       { label: 'Opakowanie', id: 'opakowanie' },
-      { label: 'Kraj', id: 'kraj' },
+      { label: 'Kraj pochodzenia', id: 'kraj' },
       { label: 'Akcja', id: 'action' },
     ],
   }
