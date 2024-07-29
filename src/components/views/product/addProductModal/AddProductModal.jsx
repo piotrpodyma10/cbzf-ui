@@ -189,6 +189,7 @@ export const AddProductModal = ({ handleClose, open, product = {}, editMode = fa
     setPorcja(0)
     setPar2('g')
     handleClose()
+    setImage(null)
     setSavedImage(null)
   }
 
