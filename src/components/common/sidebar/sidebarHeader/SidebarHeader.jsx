@@ -1,4 +1,4 @@
-import Logo from '../../../../assets/imgs/logo.jpg'
+import Logo from '../../../../assets/imgs/logo.png'
 import './SidebarHeader.scss'
 
 function SidebarHeader() {
