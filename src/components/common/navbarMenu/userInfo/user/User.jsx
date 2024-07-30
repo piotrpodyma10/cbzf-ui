@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import avatar from '../../../../../assets/imgs/avatar.png'
+import avatar from '../../../../../assets/imgs/user.png'
 import { auth } from '../../../../../features/redux/auth/authSlice'
 import './User.scss'
 
